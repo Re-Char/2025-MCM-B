@@ -21,7 +21,7 @@
 \begin{abstract}
     Here is the abstract of your paper.
 
-    Firstly, that is ...
+    对于第一个模型，游客是唯一的决策变量，同时为了达到最大化环境质量和社会满意度的需求，模型采取了\textbf{多目标建模的方法}，最后使用\textbf{帕累托最优法}来确定多组最优解并为决策提供相应的结果建议。在这个模型中，社会满意度由两个部分组成，一是当地居民的满意度，二是游客的满意度，并分别取0.5的权重相加作为最终的社会满意度。人数主要由两个因素来进行限制，一是当地水资源的限制，而是当地废物处理的能力的限制。环境的质量由三个因素来考虑，水资源的消耗量，CO_2的排放量以及废物的增加量。
 
     Secondly, that is ...
 
@@ -107,10 +107,37 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 \section{The Models}
 \subsection{Model 1}
 \subsubsection{Details about Model 1}
-The detail can be described by equation \eqref{eq:heat}:
-\begin{equation}\label{eq:heat}
-\frac{\partial u}{\partial t} - a^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} \right) = f(x, y, z, t)
-\end{equation}
+
+\begin{equation}
+	R_{e}(N_{t},P_{t}) = P_{t}N_{t}
+	\end{equation}
+	\begin{equation}
+	E=k_{1}(CO_{2p}N_{t}-C_{base})+k_{2}\frac{N_{t}}{C_{waste}}+k_{3}\frac{N_{t}}{C_{water}}
+	\end{equation}
+	\begin{equation}
+	\begin{cases}
+		S_{residents}=a_{1}N_{t}^2+a_{2}N_{t} + b_{1} \\
+		S=k_{4}S_{residents}
+	\end{cases}
+	\end{equation}
+	\begin{equation}
+	\begin{cases}
+		\frac{\mathrm{d}C_{waste}}{\mathrm{d}t}=\alpha_1P_{waste} \\
+		\frac{\mathrm{d}C_{water}}{\mathrm{d}t}=\alpha_2P_{water} \\
+		\frac{\mathrm{d}C_{base}}{\mathrm{d}t}=\alpha_3P_e \\
+	\end{cases}
+	\end{equation}
+	\begin{equation}
+	\begin{cases}
+	P_{waste} = k_5\tau_tR_e\\
+	P_{water} = k_6\tau_tR_e\\
+	P_{e}=k_7\tau_{t}R_e \\
+	k_5+k_6+k_7 \leqslant 0.4
+	\end{cases}
+	\end{equation}
+	\begin{equation}
+		Target equation:Z=R_e+S-E
+	\end{equation}
 
 \subsection{Model 2}
 \subsubsection{Conclusion of Model 2}
