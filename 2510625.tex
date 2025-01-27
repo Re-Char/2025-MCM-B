@@ -286,10 +286,39 @@ The results are shown in the figure below:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{sensitive.png}
-	\caption{Sensitive Analysis}\label{fig:sensitive}
+	\caption{Sensitivity Analysis}\label{fig:sensitivity}
 \end{figure}
 
 From the figure, it is clear that the number of tourists is the most critical variable, with its local and global sensitivities reaching $0.877$ and $0.932$, respectively, far greater than the other input variables. This also aligns with the objective fact that, as a tourist city, Juneau's income is heavily influenced by the number of tourists.
+
+\subsection{Model Validation}
+
+在3.1中，我们使用多起点的混合优化策略，计算了我们建立的可持续旅游发展模型，并在3.2中对其进行了敏感度分析。虽然我们的计算结果比较符合实际，但我们仍对其正确性提出了一些质疑。因此，我们又使用了多目标优化策略再次计算了以上模型的最优情况，以验证3.1中多起点的混合优化策略的正确性。我们的优化目标依然是收入最大化、环境影响最小化和社会满意度最大化。在新的多目标优化策略中，我们使用了DEAP（Distributed Evolutionary Algorithms in Python）框架来实现NSGA-II（非支配排序遗传算法II）。然后我们使用帕累托优化，得到该模型下的一系列最优情况，然后根据需求和实际情况，选取最终的结果为 x。这一结果既符合我们的预期，也于3.1中的多起点混合优化策略的结果相互印证。此外，我们同样对多目标优化策略的算法进行了Sobol敏感度分析，得到的结果与3.2中的结果相差无几，这也进一步证明了3.3中的多目标优化策略算法的正确性，以及3.1中多起点的混合优化策略算法的正确性。如图是多目标优化策略算法的执行结果。
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{.4\textwidth}
+\includegraphics[width=\textwidth]{pareto1.png}
+\caption{Pareto Front 1}\label{subfig:left1}
+\end{subfigure}
+\begin{subfigure}[b]{.4\textwidth}
+	\includegraphics[width=\textwidth]{pareto2.png}
+	\caption{Pareto Front 2}\label{subfig:right1}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[b]{.4\textwidth}
+		\includegraphics[width=\textwidth]{pareto3.png}
+		\caption{Pareto Front 3}\label{subfig:left2}
+	\end{subfigure}
+	\begin{subfigure}[b]{.4\textwidth}
+		\includegraphics[width=\textwidth]{pareto4.png}
+		\caption{Pareto Front 4}\label{subfig:right2}
+	\end{subfigure}
+\end{figure}
+
 
 \section{Solution to Problem2}
 这里以朱诺市两个景点门登霍尔冰川和赏鲸雨林为例来具体展示分流模型是如何运作的。
