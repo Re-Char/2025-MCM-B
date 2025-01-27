@@ -45,24 +45,23 @@
 \subsection{Problem Background}
 Here is the problem background. Three major problems are discussed in this paper, which are:
 \begin{itemize}
-    \item \textbf{地理位置：}朱诺市是美国阿拉斯加州的首府，位于阿拉斯加东南部，拥有约30,000名居民。这座城市以其丰富的自然资源、独特的地理位置和迷人的自然景观而闻名，是许多游客前往阿拉斯加的首选目的地之一。朱诺市不仅是阿拉斯加的政治中心，也是一个重要的旅游枢纽，以其冰川、雨林和丰富的野生动物资源吸引着来自世界各地的游客。
-    \item \textbf{旅游现状：}近年来，朱诺市的旅游业经历了迅猛的发展，尤其是在邮轮旅游方面。2023年，朱诺市创下了接待160万邮轮游客的纪录，单日最多接待7艘大型邮轮，游客数量高达20,000人。\cite{1}这些游客为城市带来了可观的经济收益，约3.75亿美元。\cite{2}然而，这种快速发展的旅游业也带来了一系列问题，尤其是与过度旅游相关的挑战。
-    \item \textbf{环境影响：}朱诺市的门登霍尔冰川是该市的主要旅游景点之一，但近年来由于气温上升，冰川正在快速消退。自2007年以来，冰川已经后退了相当于八个足球场的距离。这种环境变化不仅对自然景观造成了破坏，也引发了当地居民对旅游业可持续性的担忧。\cite{3}
+    \item \textbf{Geographical Location: }Juneau is the capital of Alaska, located in the southeastern part of the state, with a population of approximately 30,000 residents. 
+    \item \textbf{Current Tourism Situation: }In 2023, Juneau set a record for hosting 1.6 million cruise passengers, with up to 7 large cruise ships and 20,000 passengers received in a single day.\cite{1} These tourists brought considerable economic benefits to the city, amounting to approximately \$375 million.\cite{2} However, this rapidly developing tourism industry has also brought a series of problems, especially challenges related to overtourism.
+    \item \textbf{Environmental Impact: }Mendenhall Glacier in Juneau is one of the city's main tourist attractions, but in recent years, due to rising temperatures, the glacier has been retreating rapidly. Since 2007, the glacier has retreated a distance equivalent to eight football fields. This environmental change has not only caused damage to the natural landscape but also raised concerns among local residents about the sustainability of tourism.\cite{3}
 \end{itemize}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{glacier.png}
-	\caption{glacier}\label{fig:glacier}
+	\caption{Volume Change of Mendenhall Glacier from August 17, 1984 to July 28, 2023}\label{fig:glacier}
 \end{figure}
 
 \subsection{Problem Restatement and Analysis}
 \begin{itemize}
-    \item \textbf{Problem1: }建立一个可持续旅游产业的模型，它应当满足最大化收入，最大化环境质量且最大化社会满意度并对其进行敏感性分析。
-    \item \textbf{Problem2: }建立一个模型去解决游客分流到其他人流量比较小的景点，这也是增加收入减少区域压力的措施。
-    \item \textbf{Problem3: }展示模型如何可以适应另一个受过度旅游影响的旅游目的地，应当去获取另一个城市的相关信息并用模型进行预测。
-    \item \textbf{Problem4: }展示模型随着具体措施会发生的变化以此来为决策者提供更好的建议，比如加酒店税、游客费用、每日游客数量上限以及限制酒精销售和消费等。
-    \item \textbf{An article: }为朱诺市旅游局写一封一页的备忘录，概述结果的预测、各种措施的影响以及对如何优化结果的建议。
+    \item \textbf{Problem1: }Develop a model for a sustainable tourism industry that should meet the maximization of revenue, the maximization of environmental quality, and the maximization of social satisfaction, and conduct a sensitivity analysis on it.
+    \item \textbf{Problem2: }Develop a model to address the issue of visitor diversion, which is also a measure to increase revenue and reduce regional pressure.
+    \item \textbf{Problem3: }Demonstrate how the model can be adapted to another tourist destination affected by overtourism, by obtaining relevant information from another city and analyzing it with the model.
+    \item \textbf{An article: }Write a memo to the Juneau Convention and Visitors Bureau, outlining the forecast of the results, the impact of various measures, and suggestions on how to optimize the results.
 \end{itemize}
 
 \subsection{Our work}
@@ -71,7 +70,7 @@ as the following figure:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{Process-map.png}
-	\caption{Pcocess map}\label{fig:Process-map}
+	\caption{Flowchart of Work}\label{fig:Process-map}
 \end{figure}
 
 \section{Preparation of the Models}
@@ -155,7 +154,7 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{satisfaction.png}
-	\caption{satisfaction}\label{fig:satisfaction}
+	\caption{Nonlinear Fitting between $N_t$ and $S_{residents}$}\label{fig:satisfaction}
 \end{figure}
 其中，$a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$。最后，为了消除量纲带来的影响，我们给满意度除以了满意度的最大值100分。得到的公式4如下：
 \begin{equation}
@@ -361,15 +360,17 @@ From the figure, it is clear that the number of tourists is the most critical va
 
 \section{Solution to Problem3}
 为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
-
+\subsection{数据收集}
 因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
 
-通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。根据我们模型跑出来的结果显示，xxx。这些数据和往年相比具有合理性，符合实际的基本预期。
+通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{JiuZhaiGou.jpg}
-	\caption{九寨沟旅游收入与游客人数之间的关系}\label{fig:JiuZhaiGou}
+	\caption{The Relationship between Tourism Revenue and Number of Visitors in Jiuzhaigou Scenic Area}\label{fig:JiuZhaiGou}
 \end{figure}
+\subsection{结果展示}
+根据我们模型跑出来的结果显示，xxx。这些数据和往年相比具有合理性，符合实际的基本预期。
 
 % 以下为信件/备忘录部分，不需要可自行去掉
 % 如有需要可将整个 letter 环境移动到文章开头或中间
