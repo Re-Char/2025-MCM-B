@@ -97,60 +97,70 @@ as the following figure:
 
 \section{Preparation of the Models}
 \subsection{Assumptions}
-对于模型一:
+For Problem1:
 \begin{itemize}
-	\item 假设游客消费带来的正面影响会带动就业岗位等间接影响，总体可由游客消费统一衡量。为简化模型，只考虑对旅游业经济影响最重要的因素，即游客消费，不考虑旅游业发展带来的就业岗位等间接经济影响。
-	\item 假设税收在一定合理范围内变动时不会对游客消费和游客人数产生剧烈影响。因为提高税收并没有对游客人数增长造成显著的影响，同时考虑到税收增长带来的消费意愿降低和游客消费提高的综合效应。
-	\item 为简化模型，假设游客人均消费为常数。由近几年的数据分析，游客人均消费并没有明显波动，对游客人数并没有明显的抑制作用，可认为在对一年内或近几年的较短周期的分析优化时是常量。
-	\item 考虑基建压力与其所带来的隐性成本与环境污染，根据居民调查报告与实际情况，选择居民认为压力最大的废物处理系统，与容易出现压力的水供应系统作为隐性成本的代表进行衡量。假设其他如交通压力与能源供应等所受的压力情况与趋势与这两者相似，并由这两者的承载量衡量，在模型中忽略其具体的数学关系。
-	\item 假设支出能够直接反馈到承载量与最大碳排放量里面，并且使得其获得线性的增长。为简化模型与评测，综合考虑时间滞后效应下投入对当年的基建等的影响，将其简化为线性函数，并通过调节其前的系数调整支出的即时收益。
+	\item Assuming that the positive impact of tourist consumption will drive indirect effects such as job creation, which can be uniformly measured by tourist consumption. To simplify the model, only the most important factor for the economic impact of tourism, namely tourist consumption, is considered, and indirect economic impacts such as job creation brought about by the development of tourism are not taken into account.
+	%假设游客消费带来的正面影响会带动就业岗位等间接影响，总体可由游客消费统一衡量。为简化模型，只考虑对旅游业经济影响最重要的因素，即游客消费，不考虑旅游业发展带来的就业岗位等间接经济影响。
+	\item It is assumed that changes in tax rates within a reasonable range will not have a significant impact on tourist consumption and the number of tourists. This is because increasing taxes does not significantly affect the growth in the number of tourists, and at the same time, it takes into account the combined effect of reduced willingness to consume and increased tourist consumption due to tax increases.
+	%假设税收在一定合理范围内变动时不会对游客消费和游客人数产生剧烈影响。因为提高税收并没有对游客人数增长造成显著的影响，同时考虑到税收增长带来的消费意愿降低和游客消费提高的综合效应。
+	\item To simplify the model, it is assumed that the per capita consumption of tourists is a constant. Based on the analysis of data from recent years, there has been no significant fluctuation in the per capita consumption of tourists, and it has not had a significant inhibitory effect on the number of tourists. It can be considered a constant when analyzing and optimizing for a shorter period of one year or several years.
+	%为简化模型，假设游客人均消费为常数。由近几年的数据分析，游客人均消费并没有明显波动，对游客人数并没有明显的抑制作用，可认为在对一年内或近几年的较短周期的分析优化时是常量。
+	\item Considering the infrastructure pressure and its associated implicit costs and environmental pollution, based on resident survey reports and actual conditions, the waste treatment system, which residents consider to be under the greatest pressure, and the water supply system, which is prone to stress, are chosen as representatives to measure implicit costs. It is assumed that the pressure conditions and trends of other aspects such as traffic pressure and energy supply are similar to these two, and their carrying capacities are used to measure them, ignoring their specific mathematical relationships in the model.
+	%考虑基建压力与其所带来的隐性成本与环境污染，根据居民调查报告与实际情况，选择居民认为压力最大的废物处理系统，与容易出现压力的水供应系统作为隐性成本的代表进行衡量。假设其他如交通压力与能源供应等所受的压力情况与趋势与这两者相似，并由这两者的承载量衡量，在模型中忽略其具体的数学关系。
+	\item It is assumed that expenditures can directly reflect in the carrying capacity and maximum carbon emissions, and enable their linear growth. To simplify the model and evaluation, considering the time-lag effect of investments on infrastructure and other aspects in the current year, it is simplified into a linear function, and the immediate benefits of expenditures are adjusted by regulating the coefficients in front of them.
+	%假设支出能够直接反馈到承载量与最大碳排放量里面，并且使得其获得线性的增长。为简化模型与评测，综合考虑时间滞后效应下投入对当年的基建等的影响，将其简化为线性函数，并通过调节其前的系数调整支出的即时收益。
 \end{itemize}
-对于模型二:
-\begin{itemize}
-	\item 假设宣传的成本消耗与所能分流的人数为线性关系，以便于量化计算宣传成本。
-\end{itemize}
-\subsection{数据准备}
-\begin{tabbing}
-    朱诺市近年的年游客数量 \= 朱诺市近年的月游客数量 \= 朱诺市税收分配情况 \kill
-    朱诺市近年的年游客数量 \> 朱诺市近年的月游客数量 \> 朱诺市税收分配情况 \\
-    朱诺市近年的各项税率 \> 朱诺市近年的游客人均消费 \> 朱诺市近年的游客调查报告 \\
-    朱诺市近年的居民调查报告 \> 朱诺市近年的饮用水年供应量 \> 朱诺市近年的日废物处理量 \\
-    美国居民日均用水量 \> 美国居民日均废物产生量 \> 九寨沟近年的年游客数量 \\
-    九寨沟近年的财政支出 \> 九寨沟近年的游客人均消费 \> 朱诺市观鲸项目项目报告 \\
-    朱诺市观鲸项目游客平均消费 \> 朱诺市观景项目近年年游客数量
-\end{tabbing}
-\subsection{Notations}
-The primary notations used in this paper are listed in Table \ref{tb:notation}.
 
+For Problem3:
+\begin{itemize}
+	\item It is assumed that the cost consumption of publicity and the number of people that can be diverted have a linear relationship to facilitate the quantitative calculation of publicity costs.
+	%假设宣传的成本消耗与所能分流的人数为线性关系，以便于量化计算宣传成本。
+\end{itemize}
+% \subsection{数据准备}
+% \begin{tabbing}
+%     朱诺市近年的年游客数量 \= 朱诺市近年的月游客数量 \= 朱诺市税收分配情况 \kill
+%     朱诺市近年的年游客数量 \> 朱诺市近年的月游客数量 \> 朱诺市税收分配情况 \\
+%     朱诺市近年的各项税率 \> 朱诺市近年的游客人均消费 \> 朱诺市近年的游客调查报告 \\
+%     朱诺市近年的居民调查报告 \> 朱诺市近年的饮用水年供应量 \> 朱诺市近年的日废物处理量 \\
+%     美国居民日均用水量 \> 美国居民日均废物产生量 \> 九寨沟近年的年游客数量 \\
+%     九寨沟近年的财政支出 \> 九寨沟近年的游客人均消费 \> 朱诺市观鲸项目项目报告 \\
+%     朱诺市观鲸项目游客平均消费 \> 朱诺市观景项目近年年游客数量
+% \end{tabbing}
+\subsection{Notations}
+The primary notations used in this paper are listed in the following Table.
 % 三线表示例
-\begin{table}[H]
-\begin{center}
-\caption{Notations}
-\begin{tabular}{>{\centering\arraybackslash}m{4cm} >{\centering\arraybackslash}m{10cm}}
+\begin{longtable}{>{\centering\arraybackslash}m{4cm} >{\centering\arraybackslash}m{10cm}}
+	\caption{Notations} \label{tb:notation} \\
 	\toprule
-		Symbol & Definition \\
+	Symbol & Definition \\
 	\midrule
-		\(R\) & 经济发展指数 \\
-	    \(R_{e}\) & Total tourism income \\
-		\(N_{t}\) & Number of tourists \\
-		\(N_{tmax}\) & Maximum number of tourists allowed per year \\
-		\(\tau_{t}\) & Tax rate \\
-		\(P_{t}\) & Average spending per tourist \\
-		\(E\) & 环境污染指数 \\
-		\(CO_{2max}\) & 所允许的最大年 \(CO_{2}\) 排放量 \\
-		\(CO_{2p}\) & Carbon emissions per person \\
-		\(C_{waste}\) & 城市的废物处理系统能够承载的年游客人数 \\
-		\(C_{water}\) & 城市的饮用水供应系统与水污染处理系统能够承载的年游客人数 \\
-		\(S_{residents}\) & Residential satisfaction \\
-		\(S\) & Social satisfaction \\
-		\(P_{waste}\) & Cities' investment in waste management \\
-		\(P_{water}\) & Cities' investment in water management \\
-		\(P_{e}\) & Cities' investment in environment management \\
-		\(Z\) & Representation of target equation\\
+	\endhead
+	
+	\midrule
+	\multicolumn{2}{r}{\textit{Continued on next page}} \\
+	\endfoot
+	
 	\bottomrule
-\end{tabular}\label{tb:notation}
-\end{center}
-\end{table}
+	\endlastfoot
+	
+	\(R\) & Economic Development Index \\
+	\(R_{e}\) & Total tourism income \\
+	\(N_{t}\) & Number of tourists \\
+	\(N_{tmax}\) & Maximum number of tourists allowed per year \\
+	\(\tau_{t}\) & Tax rate \\
+	\(P_{t}\) & Average spending per tourist \\
+	\(E\) & Environmental Pollution Index \\
+	\(CO_{2max}\) & Maximum allowed annual \(\text{CO}_{2}\) emissions \\
+	\(CO_{2p}\) & Carbon emissions per person \\
+	\(C_{waste}\) & The number of annual tourists that the city's waste treatment system can accommodate. \\
+	\(C_{water}\) & The number of annual tourists that the city's drinking water supply system and water pollution treatment system can accommodate. \\
+	\(S_{residents}\) & Residential satisfaction \\
+	\(S\) & Social satisfaction \\
+	\(P_{waste}\) & Cities' investment in waste management \\
+	\(P_{water}\) & Cities' investment in water management \\
+	\(P_{e}\) & Cities' investment in environment management \\
+	\(Z\) & Representation of target equation\\
+\end{longtable}
 
 \section{Solution to Problem1}
 \subsection{Establish a Sustainable Tourism Development Model}
@@ -405,20 +415,15 @@ In Section 3.1, we used a multi-starting point hybrid optimization strategy to c
 根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
 
 \section{Solution to Problem3}
-\subsection{生成不同景点的目标函数}
-为了进行不同景点之间分流，我们需要获取各个景点的目标函数以来衡量各景点人流量变化后的收益变化。因此，我们需要获得具体每个景点的相关数据。因为不同景点的游客人数，人均消费不同，随之而导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
+\subsection{生成不同景点的可持续发展模型}
+为了进行不同景点之间分流，我们需要获取各个景点的可持续发展模型以确定发展策略，便于获取在某个实际游客数量下的综合收益。因此，我们需要获得具体每个景点的相关数据。因为不同景点的环境条件、人均消费、基建承载量等不同，游客人数导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
 
-阐述一下不同景点修改的实际数据
+我们主要考虑对朱诺市的两个人们景点门登霍尔冰川和赏鲸雨林进行分析。在模型一的基础上，我们搜集了赏鲸的相关数据，包括赏鲸项目的年游客人数、平均游客消费等，并对相关的参数进行了调整，由于参与赏鲸景点的游客同样主要在朱诺市附近活动，我们考虑赏鲸景点的最大承载量等与门登霍尔冰川的近似，同时，由于赏鲸项目并未面临很严重的环境问题，我们上调了最大碳排放量，以及环境投资的回报系数，以更好地模拟实际的情况。
+我们对两个模型分别进行了单独的优化计算，获取到了最优游客人数，最优税收以及最优的支出分配策略，接着，我们构建了分流模型以优化实际的分流人数。
 \subsection{建立分流模型}
-在对景点进行了目标函数的构建之后，我们通过各景点的经过修改后的模型一计算得出具体的最优游客人数和各景点的支出分配政策。
-
-在此基础上，我们考虑分流问题。假设模型中有$n$个子模型，代表了具体的$n$个景点。则总收益函数为:
-\begin{equation}
-    Z = \sum_{i=1}^{n} Z_i
-\end{equation}
-
-每个模型中的实际人数为$N_{ti}$，，最优人数为$N_{ei}$。对于实际人数大于最优人数的景点$n_i$，我们希望将超出最有人数的部分分流去$n_j$，则
-$C_{i-j} = C_{pi-j}*\Delta N_{i-j}$(总成本，等于将一个人分流走的宣传成本乘以分流走的人数)，则宣传需要$C = \sum_{i,j} C_{i-j}$，
+假设模型中有$n$个子模型，代表了具体的$n$个景点。
+每个模型中的实际人数为$N_{ti}$，，最优人数为$N_{ei}$。对于实际人数大于最优人数的景点$n_i$，我们希望将超出最优人数的部分分流去实际人数较少的景点$n_j$，则
+$C_{i-j} = C_{pi-j}*\Delta N_{i-j}$，代表此次分流的总成本等于将一个人从$n_i$分流到$n_j$的宣传成本乘以分流走的人数，则宣传成本总共为$C = \sum_{i,j} C_{i-j}$，
 故决策变量为:
 \begin{equation}
     \Delta N_{i,j} (1 \leq i,j \leq n)
@@ -427,14 +432,12 @@ $C_{i-j} = C_{pi-j}*\Delta N_{i-j}$(总成本，等于将一个人分流走的�
 \begin{equation}
 	Z = \sum_{i=1}^{n} Z_i(N_{ti}) - \frac{C}{C_{std}}
 \end{equation}
-\subsection{结果展示}
-这里以朱诺市两个景点门登霍尔冰川和赏鲸雨林为例来具体展示分流模型的结果。
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.8\textwidth]{model2.png}
-	\caption{model2}\label{fig:model2}
-\end{figure}
-解释一下这个图，我看不太懂QAQ
+其中，$C_{std}$是估计的最大宣传成本，用于进行归一化去除宣传支出的量纲。
+\subsection{计算结果}
+这里以朱诺市两个景点门登霍尔冰川和赏鲸景点为例来具体展示分流模型的结果。
+我们希望将游客从门登霍尔冰川分流至赏鲸景点以减少冰川面临的环境压力，我们首先对两个子模型进行了分别的优化，计算出了最佳人数、税率与支出分配比例，并将其作为输入调整分流模型。紧接着我们估计了分流每人的大致宣传成本，输入到分流模型中完成了模型的构建。
+具体的，我们采用模拟退火算法进行求解。通过设定一个初始温度，控制步长大小，模拟固体退温的过程，以求解模型的全局最优解。
+经过计算，我们得出分流人数在329888人左右最佳，分流比例达到在百分之二十左右。参考我们模型的结果，朱诺政府可以考虑采取更好的宣传策略，以获取更好的总体收益。
 
 
 % 以下为信件/备忘录部分，不需要可自行去掉
