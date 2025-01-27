@@ -342,71 +342,36 @@ From the figure, it is clear that the number of tourists is the most critical va
 
 
 \section{Solution to Problem2}
-这里以朱诺市两个景点门登霍尔冰川和赏鲸雨林为例来具体展示分流模型是如何运作的。
 \subsection{生成不同景点的目标函数}
-为了进行不同景点之间分流，我们需要获取各个景点的目标函数以来衡量各景点人流量变化后的收益变化。因此，我们需要获得具体每个景点的相关数据。
+为了进行不同景点之间分流，我们需要获取各个景点的目标函数以来衡量各景点人流量变化后的收益变化。因此，我们需要获得具体每个景点的相关数据。因为不同景点的游客人数，人均消费不同，随之而导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
 
+阐述一下不同景点修改的实际数据
+\subsection{建立分流模型}
+在对景点进行了目标函数的构建之后，我们通过各景点的经过修改后的模型一计算得出具体的最优游客人数和各景点的支出分配政策。
 
+在此基础上，我们考虑分流问题。假设模型中有$n$个子模型，代表了具体的$n$个景点。则总收益函数为:
+\begin{equation}
+    Z = \sum_{i=1}^{n} Z_i
+\end{equation}
 
-% \subsection{Commetary on Model 2}
-% The instance of long and wide tables are shown in Table \ref{tb:longtable}.
-
-% % 长表格示例，更多用法请参考 longtable 宏包文档
-% % 以下环境及对应参数可实现表格内的自动换行与表格的自动断页
-% % 您也可以选择自行载入 tabularx 宏包，并通过 X 参数指定对应列自动换行
-% \begin{longtable}{ p{4em} p{14em} p{14em} }
-% \caption{Basic Information about Three Main Continents (scratched from Wikipedia)}
-% \label{tb:longtable}\\
-% \toprule
-% Continent & Description & Information \\
-% \midrule
-% Africa & Africa Continent is surrounded by the Mediterranean Sea to the
-% north, the Isthmus of Suez and the Red Sea to the northeast, the Indian
-% Ocean to the southeast and the Atlantic Ocean to the west. &
-% At about 30.3 million km$^2$ including adjacent islands, it covers 6\%
-% of Earth's total surface area and 20\% of its land area. With 1.3
-% billion people as of 2018, it accounts for about 16\% of the world's
-% human population. \\
-% \midrule
-% Asia & Asia is Earth's largest and most populous continent which
-% located primarily in the Eastern and Northern Hemispheres.
-% It shares the continental landmass of Eurasia with the continent
-% of Europe and the continental landmass of Afro-Eurasia with both
-% Europe and Africa. &
-% Asia covers an area of 44,579,000 square kilometres, about 30\%
-% of Earth's total land area and 8.7\% of the Earth's total surface
-% area. Its 4.5 billion people (as of June 2019) constitute roughly
-% 60\% of the world's population. \\
-% \midrule
-% Europe & Europe is a continent located entirely in the Northern
-% Hemisphere and mostly in the Eastern Hemisphere. It comprises the
-% westernmost part of Eurasia and is bordered by the Arctic Ocean to
-% the north, the Atlantic Ocean to the west, the Mediterranean Sea to
-% the south, and Asia to the east. &
-% Europe covers about 10,180,000 km$^2$, or 2\% of the Earth's surface
-% (6.8\% of land area), making it the second smallest
-% continent. Europe had a total population of about 741 million (about
-% 11\% of the world population) as of 2018. \\
-% \bottomrule
-% \end{longtable}
-
-% Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:left} is on the left, and Figure \ref{subfig:right} is on the right.
-
-% 子图（多图并列）示例，更多用法请参考 subfigure 宏包文档
-% 如果您只希望几张图并列，不需要额外的 caption，那么在 figure 环境中
-% 连续插入总宽度不超过 \textwidth 的多个 \includegraphics 命令即可
-% \begin{figure}[htbp]
-% \centering
-% \begin{subfigure}[b]{.4\textwidth}
-% \includegraphics[width=\textwidth]{water.png}
-% \caption{Image on the left}\label{subfig:left}
-% \end{subfigure}
-% \begin{subfigure}[b]{.4\textwidth}
-% \includegraphics[width=\textwidth]{water.png}
-% \caption{Image on the right}\label{subfig:right}
-% \end{subfigure}
-% \caption{Two images}\label{fig:subfigures}
-% \end{figure}
+每个模型中的实际人数为$N_{ti}$，，最优人数为$N_{ei}$。对于实际人数大于最优人数的景点$n_i$，我们希望将超出最有人数的部分分流去$n_j$，则
+$C_{i-j} = C_{pi-j}*\Delta N_{i-j}$(总成本，等于将一个人分流走的宣传成本乘以分流走的人数)，则宣传需要$C = \sum_{i,j} C_{i-j}$，
+故决策变量为:
+\begin{equation}
+    \Delta N_{i,j} (1 \leq i,j \leq n)
+\end{equation}
+目标函数为:
+\begin{equation}
+	Z = \sum_{i=1}^{n} Z_i(N_{ti}) - \frac{C}{C_{std}}
+\end{equation}
+\subsection{结果展示}
+这里以朱诺市两个景点门登霍尔冰川和赏鲸雨林为例来具体展示分流模型的结果。
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{model2.png}
+	\caption{model2}\label{fig:model2}
+\end{figure}
+解释一下这个图，我看不太懂QAQ
 
 \section{Solution to Problem3}
 为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
