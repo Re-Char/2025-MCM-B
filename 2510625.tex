@@ -141,7 +141,7 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 
 我们的目标函数应受收入，社会满意度和环境质量三者影响，我们希望经济效应最大化，社会满意度最大化以及环境污染最小化。故而，经济指数R与社会满意度指数S对目标函数起到正向的影响作用，而环境污染指数对目标函数有负向的抑制作用。最终我们得到：
 \begin{equation}
-	Target\; equation:Z=R+S-E
+	Objective\ function:Z=R+S-E
 \end{equation}
 
 我们主要通过游客在旅游时的总消费来衡量旅游收入。旅游总收入主要受到人均消费金额与游客总人数的影响。为了简化模型，我们认为在短期内人均消费不会发生很大波动，是定值。故而旅游的总收入应当和旅客的人数成简单的线性关系，因此我们可以很简单的得到公式2
@@ -160,11 +160,11 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 环境质量方面，我们主要考虑三个因素的影响：二氧化碳排放量，水的消耗量以及废物的产生量，而这三个因素都与游客人数密切相关。
 对于碳排放因素，我们主要考虑朱诺市由于过度旅游造成的冰川融化问题。根据NASA的数据，门登霍尔冰川在1984-2023年40年间融化了约16公里，平均每年融化40m，需要控制其融化的速度。我们可以使用度日因子法估计冰川的融化速度：
 \begin{equation}
-    M=DDF*DDT
+    M=DDF\times DDT
 \end{equation}
 其中，DDF是度日因子，变化小接近常量，而DDT是正积温，受到温度的直接影响。想要控制冰川融化的速度，关键在于控制温度的升高，而碳排放是影响温度升高的主要因素。根据《巴黎协定》的规定，1850-2100年间年平均气温升高尽量控制在1.5度-2.0度，我们以1.5度为温度升高的最大限度计算最大碳排放量。
 \begin{equation}
-    deltaT=numda*ln(CO_{2}/CO_{2pre-industrial})
+    \Delta T=\lambda\times \ln(CO_{2}/CO_{2pre-industrial})
 \end{equation}
 根据该公式计算出全球平均二氧化碳浓度增量，乘上大气质量得到全球250年间的二氧化碳排放总量，通过朱诺市的人口占比，估算出朱诺市的年平均排放量。旅游业是朱诺市占比最大的产业，按照总量的百分之60计算排放总量。同时我们根据朱诺市的森林湿地面积与平均碳吸收量，将两者相加得到最大碳排放量。
 而对于游客的人均碳足迹，我们考虑到游客主要以邮轮方式出行，有较高的碳排放量，结合邮轮出行平均碳排放量和游客岸上行动的平均碳排放量对人均碳排放量进行了估计。
@@ -344,8 +344,22 @@ From the figure, it is clear that the number of tourists is the most critical va
 	\end{subfigure}
 \end{figure}
 
-
 \section{Solution to Problem2}
+为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
+\subsection{数据收集}
+因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
+
+通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{JiuZhaiGou.jpg}
+	\caption{The Relationship between Tourism Revenue and Number of Visitors in Jiuzhaigou Scenic Area}\label{fig:JiuZhaiGou}
+\end{figure}
+\subsection{结果展示}
+根据我们模型跑出来的结果显示，xxx。这些数据和往年相比具有合理性，符合实际的基本预期。
+
+
+\section{Solution to Problem3}
 \subsection{生成不同景点的目标函数}
 为了进行不同景点之间分流，我们需要获取各个景点的目标函数以来衡量各景点人流量变化后的收益变化。因此，我们需要获得具体每个景点的相关数据。因为不同景点的游客人数，人均消费不同，随之而导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
 
