@@ -150,8 +150,8 @@ The primary notations used in this paper are listed in the following Table.
 	\(\tau_{t}\) & Tax rate \\
 	\(P_{t}\) & Average spending per tourist \\
 	\(E\) & Environmental Pollution Index \\
-	\(CO_{2max}\) & Maximum allowed annual \(\text{CO}_{2}\) emissions \\
-	\(CO_{2p}\) & Carbon emissions per person \\
+	\(\text{CO}_{2max}\) & Maximum allowed annual \(\text{CO}_{2}\) emissions \\
+	\(\text{CO}_{2p}\) & Carbon emissions per person \\
 	\(C_{waste}\) & The number of annual tourists that the city's waste treatment system can accommodate. \\
 	\(C_{water}\) & The number of annual tourists that the city's drinking water supply system and water pollution treatment system can accommodate. \\
 	\(S_{residents}\) & Residential satisfaction \\
@@ -196,21 +196,21 @@ In terms of environmental quality, we mainly consider the impact of three factor
 For the carbon emission factor, we mainly consider the glacier melting problem in Juneau caused by excessive tourism. According to NASA data,\cite{6} the Mendenhall Glacier melted approximately 1.6 kilometers between 1984-2023 over 40 years, with an average melting rate of 40 meters per year, and its melting speed needs to be controlled. We can use the \textbf{degree-day factor method} to estimate the glacier melting rate:
 %对于碳排放因素，我们主要考虑朱诺市由于过度旅游造成的冰川融化问题。根据NASA的数据，门登霍尔冰川在1984-2023年40年间融化了约16公里，平均每年融化40m，需要控制其融化的速度。我们可以使用度日因子法估计冰川的融化速度：
 \begin{equation}
-    M=DDF\times DDT
+    M=\text{DDF}\times \text{DDT}
 \end{equation}
 Where \textbf{DDF} is the degree-day factor, which varies little and is close to constant, and \textbf{DDT} is the positive temperature sum, which is directly affected by temperature. To control the rate of glacier melting, the key is to control temperature rise, and carbon emissions are the main factor affecting temperature rise. According to the \textit{Paris Agreement}, the average annual temperature rise between 1850-2100 should be controlled between 1.5-2.0 degrees, and we use 1.5 degrees as the maximum temperature rise to calculate the maximum carbon emissions.
 %其中，DDF是度日因子，变化小接近常量，而DDT是正积温，受到温度的直接影响。想要控制冰川融化的速度，关键在于控制温度的升高，而碳排放是影响温度升高的主要因素。根据《巴黎协定》的规定，1850-2100年间年平均气温升高尽量控制在1.5度-2.0度，我们以1.5度为温度升高的最大限度计算最大碳排放量。
 \begin{equation}
-    \Delta T=\lambda\times \ln(CO_{2}/CO_{2pre-industrial})
+    \Delta T=\lambda\times \ln(\text{CO}_{2}/\text{CO}_{2pre-industrial})
 \end{equation}
 According to this formula, we calculate the global average increase in carbon dioxide concentration, multiply it by atmospheric mass to obtain the total global carbon dioxide emissions over 250 years, and estimate Juneau's average annual emissions through its population proportion. Tourism is Juneau's largest industry, accounting for 60 percent of total emissions. Meanwhile, we calculate the maximum carbon emissions by adding the forest wetland area and average carbon absorption of Juneau.
 %根据该公式计算出全球平均二氧化碳浓度增量，乘上大气质量得到全球250年间的二氧化碳排放总量，通过朱诺市的人口占比，估算出朱诺市的年平均排放量。旅游业是朱诺市占比最大的产业，按照总量的百分之60计算排放总量。同时我们根据朱诺市的森林湿地面积与平均碳吸收量，将两者相加得到最大碳排放量。
 As for tourists' per capita carbon footprint, we considered that tourists mainly travel by cruise ships, which have relatively high carbon emissions, and estimated per capita carbon emissions by combining the average carbon emissions of cruise travel and tourists' onshore activities.
 %而对于游客的人均碳足迹，我们考虑到游客主要以邮轮方式出行，有较高的碳排放量，结合邮轮出行平均碳排放量和游客岸上行动的平均碳排放量对人均碳排放量进行了估计。
-Through Juneau's processing capacity for the latter two factors and the per capita consumption/generation of tourists and residents, we can calculate the number of tourists that Juneau's water supply system and waste treatment system can accommodate annually, $C_{waste}$ and $C_{water}$. We normalize the actual number of people compared to the carrying capacity to measure the pressure on the infrastructure system. Finally, combining the importance factors of each factor, we obtained Function 3:
+Through Juneau's processing capacity for the latter two factors and the per capita consumption/generation of tourists and residents, we can calculate the number of tourists that Juneau's water supply system and waste treatment system can accommodate annually, $C_{waste}$ and $C_{water}$. We normalize the actual number of people compared to the carrying capacity to measure the pressure on the infrastructure system. Finally, combining the importance factors of each factor, we obtained Function 6:
 %通过朱诺市对后两个因素的处理能力和游客与居民的人均消耗/产生量，可以计算出朱诺市供水系统和废物处理系统可以每年承载的游客数$C_{waste}$, $C_{water}$，我们将实际的人数和承载人数相比进行归一化处理来衡量基建体系压力。最后结合各因子的重要性因素得到了公式3：
 \begin{equation}
-	E=k_{1}\frac{CO_{2p}N_{t}}{CO_{2max}}+k_{2}\frac{N_{t}}{C_{waste}}+k_{3}\frac{N_{t}}{C_{water}}
+	E=k_{1}\frac{\text{CO}_{2p}N_{t}}{\text{CO}_{2max}}+k_{2}\frac{N_{t}}{C_{waste}}+k_{3}\frac{N_{t}}{C_{water}}
 \end{equation}
 Specifically, we believe that Juneau currently faces a relatively serious glacier melting problem and needs to control carbon emissions. Additionally, its waste treatment system has a smaller capacity compared to its water supply system, and population growth puts greater pressure on it. Therefore, we consider $k_1>k_2>k_3$.
 %具体的，我们认为朱诺市目前面临较为严重的冰川融化问题，需要控制碳排放量，同时，其废物处理系统的承载量相比供水系统更小，人数的增长对其的压力更大，故而我们认为k1>k2>k3。
@@ -224,7 +224,7 @@ We primarily collected social satisfaction survey results from Juneau for five y
 	\includegraphics[width=.8\textwidth]{satisfaction.png}
 	\caption{Nonlinear Fitting between $N_t$ and $S_{residents}$}\label{fig:satisfaction}
 \end{figure}
-Where $a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$. Finally, to eliminate the impact of dimensionality, we divided the satisfaction score by the maximum satisfaction value of 100 points. The resulting Function 4 is as follows:
+Where $a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$. Finally, to eliminate the impact of dimensionality, we divided the satisfaction score by the maximum satisfaction value of 100 points. The resulting Function 7 is as follows:
 %其中，$a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$。最后，为了消除量纲带来的影响，我们给满意度除以了满意度的最大值100分。得到的公式4如下：
 \begin{equation}
 	\begin{cases}
@@ -233,7 +233,7 @@ Where $a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660
 	\end{cases}
 \end{equation}
 
-In terms of additional investment, we considered the feedback effect of the government's tax allocation plan on the system. The government can invest in water supply systems, waste treatment systems, and environmental protection, such as infrastructure construction or increasing afforestation efforts, to improve the maximum carrying capacity of infrastructure and maximum carbon emissions, thereby obtaining higher returns. We believe that the government can adjust the proportion of investment in actual government allocation to maximize returns. The resulting Function 5 is as follows:
+In terms of additional investment, we considered the feedback effect of the government's tax allocation plan on the system. The government can invest in water supply systems, waste treatment systems, and environmental protection, such as infrastructure construction or increasing afforestation efforts, to improve the maximum carrying capacity of infrastructure and maximum carbon emissions, thereby obtaining higher returns. We believe that the government can adjust the proportion of investment in actual government allocation to maximize returns. The resulting Function 8 is as follows:
 %额外投入方面，我们考虑到了政府对于额外税收的分配计划对系统的反馈作用，政府可以向供水系统、废物处理系统以及环境保护方面进行投入，如进行基建建设或者增强植树造林等，以提高基建的最大承载量和最大的碳排放量，进而获取更高的收益。我们认为政府可以调整投入在政府实际分配中的比值，以获取最大的收益。得到公式5如下：
 \begin{equation}
 	\begin{cases}
@@ -249,36 +249,36 @@ To simplify the model, we assume that investment can directly generate returns, 
 	\begin{cases}
 		C_{waste}+=\alpha_1P_{waste} \\
 		C_{water}+=\alpha_2P_{water} \\
-		CO_{2max}+=\alpha_3P_e \\
+		\text{CO}_{2max}+=\alpha_3P_e \\
 	\end{cases}
 	\end{equation}
 
 \subsubsection{Find the constraints}
-In terms of economics, to limit the tax rate value and ensure the accuracy of assumptions, we set a restriction that the overall tax rate should be less than or equal to 8\%. Therefore, we have Formula 7:
+In terms of economics, to limit the tax rate value and ensure the accuracy of assumptions, we set a restriction that the overall tax rate should be less than or equal to 8\%. Therefore, we have Formula 10:
 %在经济方面，为了限制税率的值以保证假设准确，我们设置了一个限制，认为总体税率应小于等于8\%。因此有公式7：
 \begin{equation}
 	\text{Financial}:\tau_{t}\leqslant 8\% \\
 \end{equation}
 
-Regarding tourist numbers, based on Juneau's policy\cite{7}, we derived the daily tourist number limit. Function 8 is as follows:
+Regarding tourist numbers, based on Juneau's policy\cite{7}, we derived the daily tourist number limit. Function 11 is as follows:
 %游客人数方面，我们依据朱诺市的政策\cite{7}得出了每天的游客的人数限制。公式8如下:
 \begin{equation}
 	\text{Touristic}:
 		0\leqslant N_{t}\leqslant N_{tmax}\\
 \end{equation}
 
-Regarding environmental aspects, first, we set a limit on the maximum carbon dioxide emissions. For the maximum carrying capacity of water resources and waste treatment, we considered that seasonal fluctuations in tourist numbers would lead to increased infrastructure pressure during peak seasons. Based on the data, we obtained the ratio of maximum daily tourist numbers during peak season to total annual tourist numbers. Taking into account the elasticity of infrastructure capacity within a year, we set 1.2 times the daily average carrying capacity as an upper limit to restrict the maximum daily number of tourists. Function 9 is as follows:
+Regarding environmental aspects, first, we set a limit on the maximum carbon dioxide emissions. For the maximum carrying capacity of water resources and waste treatment, we considered that seasonal fluctuations in tourist numbers would lead to increased infrastructure pressure during peak seasons. Based on the data, we obtained the ratio of maximum daily tourist numbers during peak season to total annual tourist numbers. Taking into account the elasticity of infrastructure capacity within a year, we set 1.2 times the daily average carrying capacity as an upper limit to restrict the maximum daily number of tourists. Function 12 is as follows:
 %环境方面，首先，我们限定了二氧化碳的最大排放量，而在水资源最大承载量和废物处理最大承载量上面，我们考虑到游客人数的季节性波动会导致旺季基建压力的上升，根据数据获得旺季每天最多游客人数占全年总游客人数的比例，考虑到基建能力一年内的的承载弹性，升大设置1.2倍日平均承载量作为上限来限制最大的日游客人数。公式9如下：
 \begin{equation}
 	\text{Environmental}:
 	\begin{cases}
-		N_{t}\cdot CO_{2p}\leqslant CO_{2max} \\
+		N_{t}\cdot \text{CO}_{2p}\leqslant \text{CO}_{2max} \\
 		0.012N_t\leqslant \frac{1.2}{365}C_{waste} \\
 		0.012N_t\leqslant \frac{1.2}{365}C_{water}
 	\end{cases}
 \end{equation}
 
-Regarding social satisfaction, after appropriate quantification, we set 60 as the passing threshold. Therefore, Function 10 is as follows:
+Regarding social satisfaction, after appropriate quantification, we set 60 as the passing threshold. Therefore, Function 13 is as follows:
 %社会满意度方面，经过合适的量化后，我们将60作为及格线。故公式10如下：
 \begin{equation}
 	\text{Social}:\ S_{residents} \geqslant 60
