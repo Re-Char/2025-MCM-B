@@ -10,7 +10,7 @@
 \problem{B}  % 请在此处填写题号
 % \usepackage{mathptmx}  % 这是 Times 字体，中规中矩 
 \usepackage{mathpazo}  % 这是 COMAP 官方杂志采用的更好看的 Palatino 字体，可替代以上的 mathptmx 宏包
-\makeatletter
+\makeatletter 
 \newenvironment{breakablealgorithm}
   {% \begin{breakablealgorithm}
    \begin{center}
@@ -30,7 +30,7 @@
    \end{center}
   }
 \makeatother
-\title{An MCM Paper Made by Team 2510625}  % 标题
+\title{Optimization Models for Sustainable Tourism}  % 标题
 
 % 如需要修改题头（默认为 MCM/ICM），请使用以下命令（此处修改为 MCM）
 %\renewcommand{\contest}{MCM}
@@ -40,17 +40,17 @@
 
 % 此处填写摘要内容
 \begin{abstract}
-    Here is the abstract of our paper.
+    \textbf{For Problem1}, to achieve sustainable development, we considered environmental, economic, and social factors and built a sustainable development model. The objective function is to increase economic benefits and social satisfaction while reducing environmental pollution. The main constraints are the maximum carbon emissions, partial infrastructure capacity, and maximum number of tourists. Through data analysis, we derived the seasonal fluctuations in the number of tourists and established a more accurate relationship between infrastructure capacity and the number of tourists, considering the feedback of government redistribution of fiscal revenue on the model. Based on the historical data of Juneau, we conducted a non-linear fit of social satisfaction and the number of tourists. The model results are shown in \textbf{Section 3.1.4}, The optimal number of tourists per year is around 1,431,579 people. In the sensitivity analysis, we assessed the local and global sensitivity of the variables and found that the number of tourists is a key variable. Finally, we used the \textbf{population iteration algorithm} and \textbf{Pareto optimization} to build a multi-objective optimization model, and verified the results of the previous single-objective model to ensure reliability. 
+	%为了达到可持续性发展，我们考虑了环境、经济、社会三方面的因素，并以此构建了可持续发展模型。目标函数是提高经济收益与社会满意度并降低环境污染程度。主要约束条件是最大碳排放量、部分基建承载量与最大游客人数。通过数据分析，我们得出了游客人数的季节性波动，并以此建立了更准确的基建承载量与游客数量的关系，并考虑了政府对财政收入的再分配对模型的反馈。基于朱诺市的历史数据，我们对社会满意度和游客人数进行了非线性拟合。模型结果见\textbf{Section 3.1.4}，年最优游客人数为1,431,579人左右。在敏感性分析中，我们评估了变量的局部和全局敏感性，发现游客人数是关键变量。最后，我们使用种群迭代算法和帕累托优化,构建了多目标优化模型，对之前的单目标模型的结果进行了验证以确保可靠。
 
-    \textbf{For Problem1}, 通过数据分析，我们发现游客人数、税率和基建投入占比对收入有影响。为此，我们构建了一个综合收入、社会满意度和环境质量的目标函数，并采用多起点优化算法寻找最优解。基于朱诺市的历史数据，我们对社会满意度和游客人数进行了非线性拟合，拟合可靠度为0.7423。通过去量纲处理，我们量化了社会满意度和环境质量对目标函数的影响。
-	模型结果显示，当游客人数为1,431,579人，游客税率为8\%，废物管理投入占比为0.179，水资源管理投入占比为0.113，环境保护投入占比为0.108时，总收入达到272亿美元，$\text{CO}_2$排放量为1,331,368.42吨，居民满意度为67.18（满分100），环境指数为0.4876（满分1，越小越好）。
-	在敏感性分析中，我们评估了变量的局部和全局敏感性，发现游客人数是关键变量。最后，我们使用种群迭代算法和帕累托优化对模型进行了验证。
+    \textbf{For Problem2}, to adapt to another scenic spot, we need to modify the key parameters in the sustainable tourism development model based on the actual situation of the spot, such as the number of tourists, per capita consumption, local water resources and waste treatment capacity. In the article, we take Jiuzhaigou Scenic Area in Sichuan Province, China as an example to show the process and results of modifying the model, and find that the results basically conform to the local actual situation. 
+	%为了适应另一个景点，我们需要根据该景点的实际情况，如游客人数、人均消费、当地水资源和废物处理承载能力等，修改可持续旅游发展模型中的关键参数。在文章中，我们以中国四川省的九寨沟景区为例，展示了修改模型的过程及结果，发现结果基本符合当地实际情况。
 
-    \textbf{For Problem2}, 为了去适应另一个景点，我们需要结合该景点的实际情况，如游客人数，游客人均消费，当地的水资源和废物处理承载能力等因素来修改可持续旅游发展模型中的关键参数。在我们的文章中，我们以位于中国四川省的九寨沟景区为例展示了修改模型的过程以及得到的相应结果并发现结果基本符合当地的客观情况。
+    \textbf{For Problem3}, based on the previous model, we constructed a diversion model, which optimizes and constructs independent sustainable development models for the main scenic spot and the secondary scenic spots used for diversion according to their actual situations. After completing the construction of the sub-models, we built the diversion model with the objective function of maximizing the total benefits of each scenic spot while minimizing the publicity input cost, using the number of people diverted from the scenic spots as the decision variable. We took Mendenhall Glacier as the main scenic spot and whale-watching spot as the diversion spot for actual construction, used \textbf{simulated annealing algorithm} for model solving, and finally believed that the Juneau government could maximize the overall benefits when diverting about 329,888 people, with a diversion ratio of about 20%. 
+	%我们在之前模型的基础上构建了一个分流模型，根据主景点与用作分流的副景点的实际情况，分别优化构建其独立的可持续发展模型。在完成了子模型的构建后，我们构建了分流模型，目标函数是使得各景点的总收益最大化，同时宣传投入成本尽可能小，以景点的分流人数作为决策变量。我们以门登霍尔冰川为主景点，赏鲸景点为分流景点进行实际的构建，采用模拟退火算法进行模型求解，最终认为朱诺政府在分流329888人左右，分流比例约为百分之20时，能够达到总体收益的最大化。
 
-    \textbf{For Problem3}, 
-
-	\textbf{For the Memorandum}, 基于上述的模型的结果的分析，我们预测了之后游客数量可能会发生的变化并考虑了季节性因素，分析了政府措施带来的影响，并在最后提出了三点优化的建议。
+	\textbf{For the Memorandum}, based on the previous sustainable development model, we constructed a dynamic model, which takes the final state of one year as the initial state of the next year, simulates the accumulation effect of infrastructure capacity and maximum carbon emissions over time, and analyzes the changes of key variables within ten years. According to the model results, we made predictions for Juneau and assessed the effectiveness of the measures, and proposed optimization suggestions combining the results of multiple models. 
+	%我们基于之前的可持续发展模型，构建了一个动态模型，将一年的最终状态作为下一年的初始状态，模拟了基建承载量和最大碳排放量随时间的积累效应，并分析了十年内关键变量的变化。根据模型结果，我们对朱诺市进行了预测，评估了措施的效果，并结合多个模型结果提出了优化建议。
     % 美赛论文中无需注明关键字。若您一定要使用，
     % 请将以下两行的注释号 '%' 去除，以使其生效
     % \vspace{5pt}
