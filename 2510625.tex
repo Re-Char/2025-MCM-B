@@ -4,6 +4,8 @@
 % 请在以下的方括号中填写队伍控制号
 \usepackage[UTF8]{ctex}
 \usepackage{float}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage[2510625]{easymcm}  % 载入 EasyMCM 模板文件
 \problem{B}  % 请在此处填写题号
 % \usepackage{mathptmx}  % 这是 Times 字体，中规中矩 
@@ -21,7 +23,7 @@
 \begin{abstract}
     Here is the abstract of your paper.
 
-    对于第一个模型，游客是唯一的决策变量，同时为了达到最大化环境质量和社会满意度的需求，模型采取了\textbf{多目标建模的方法}，最后使用\textbf{帕累托最优法}来确定多组最优解并为决策提供相应的结果建议。在这个模型中，社会满意度由两个部分组成，一是当地居民的满意度，二是游客的满意度，并分别取0.5的权重相加作为最终的社会满意度。人数主要由两个因素来进行限制，一是当地水资源的限制，而是当地废物处理的能力的限制。环境的质量由三个因素来考虑，水资源的消耗量，CO_2的排放量以及废物的增加量。
+    \textbf{对于问题1}，我们仔细分析了旅客人数，税收的变化，财政在基建方面的投入比例对于政府最后的收入，环境质量以及社会满意度所产生的影响后进行了线性规划，建立了混合优化模型并用种群迭代机制从局部最优解找到了全局的最优解。基于往年朱诺的居民满意度调查数据和相对应年的游客数量对社会满意度和游客人数进行了一个非线性的拟合，其可靠度为0.7423。我们将社会满意度和环境质量通过乘以一个合适的系数进行了去量纲处理，方便衡量对目标函数的影响。根据我们的模型生成的结果显示在游客人数为1552632，游客税率为8\%，废物管理投入占比为0.128，水资源管理投入占比为0.113，环境保护投入占比为0.159的时候，总收入为295000000000美元，$CO_{2}$的排放量为285684.21吨，居民满意度为65.84(100为最大)，环境指数为0.5014(1为最大，越小越好)。敏感性分析上，我们分析了变量的局部敏感性和全局敏感性，具体结果如图x所示并得出人数是关键的变量。
 
     Secondly, that is ...
 
@@ -49,9 +51,9 @@ Here is the problem background. Three major problems are discussed in this paper
 \end{itemize}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{glacier.png}
-\caption{glacier}\label{fig:glacier}
+	\centering
+	\includegraphics[width=.8\textwidth]{glacier.png}
+	\caption{glacier}\label{fig:glacier}
 \end{figure}
 
 \subsection{Problem Restatement and Analysis}
@@ -82,44 +84,62 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 \caption{Notations}
 \begin{tabular}{>{\centering\arraybackslash}m{4cm} >{\centering\arraybackslash}m{10cm}}
 	\toprule
-	Symbol & Definition\\
+		Symbol & Definition \\
 	\midrule
-	$N_t$ & Number of tourists\\
-    $N_{tmax}$ & Maximum number of tourists allowed per day\\
-	$\tau _t$ & Tourists taxes or surcharges per tourist\\
-	$P_t$ & Average spending per tourists\\
-    $P_b$ & Infrastructuren investiment expenditure\\
-    $P_e$ & Environment protection investiment expenditure\\
-    $CO_{2p}$ & Carbon emissions per person\\
-    $R_e$ & Total revenue\\
-    $C_h$ & Hidden cost\\
-    $E$ & Environment Quality Index\\
-    $R_{nature}$ & Nature Recovery\\
-    $S_{residents}$ & Residents' satisfaction\\
-    $S_{tourists}$ & Tourists' satisfaction\\
-    $S$ & Societal satisfaction\\
-    $C_{infra}$ & Infractructure carrying capacity\\
+	    \(R_{e}\) & Total tourism income \\
+		\(N_{t}\) & Number of tourists \\
+		\(N_{tmax}\) & Maximum number of tourists allowed per day \\
+		\(\tau_{t}\) & Tax rate \\
+		\(P_{t}\) & Average spending per tourist \\
+		\(E\) & Environmental quality index \\
+		\(CO_{2p}\) & Carbon emissions per person \\
+		\(C_{base}\) & Base carbon emission treatment capacity \\
+		\(C_{waste}\) & The amount of basic waste that the city can handle \\
+		\(C_{water}\) & The basic amount of water that the city can provide \\
+		\(S_{residents}\) & Residential satisfaction \\
+		\(S\) & Social satisfaction \\
+		\(P_{waste}\) & Cities' investment in waste management \\
+		\(P_{water}\) & Cities' investment in water management \\
+		\(P_{e}\) & Cities' investment in environment management \\
+		\(Z\) & Representation of target equation\\
 	\bottomrule
 \end{tabular}\label{tb:notation}
 \end{center}
 \end{table}
 
-\section{The Models}
-\subsection{Model 1}
-\subsubsection{Details about Model 1}
-
+\section{Solution to Problem1}
+\subsection{建立一个可持续旅游发展的模型}
+\subsubsection{找到状态变量之间的关系}
+我们的目标函数应受收入，社会满意度和环境质量三者影响，若收入增加，则目标函数也应该增加，社会满意度同理，而环境质量越大负面影响也越大所以目标函数应减小，因此我们可以得到：
 \begin{equation}
-	R_{e}(N_{t},P_{t}) = P_{t}N_{t}
-	\end{equation}
-	\begin{equation}
+	Target\; equation:Z=R_e+S-E
+\end{equation}
+
+旅游的总收入应当和旅客的人数成简单的线性关系，因此我们可以很简单的得到公式2
+\begin{equation}
+    R_{e}(N_{t},P_{t}) = P_{t}N_{t}
+\end{equation}
+
+环境质量方面，主要考虑三个因素的影响：二氧化碳排放量，水的消耗量以及废物的产生量，而这三个因素都与游客人数密切相关。通过朱诺市的对这三个因子的处理能力和人均消耗/产生量，可以计算出朱诺市可以承载的人数$C_{base}$, $C_{waste}$, $C_{water}$，我们将实际的人数和承载人数相比，通过比例衡量体系压力。最后使用Analytic Hierarchy Process(ATP)方法结合各因子的重要性因素得到了公式3：
+\begin{equation}
 	E=k_{1}(CO_{2p}N_{t}-C_{base})+k_{2}\frac{N_{t}}{C_{waste}}+k_{3}\frac{N_{t}}{C_{water}}
-	\end{equation}
-	\begin{equation}
+\end{equation}
+
+社会满意度方面，我们收集了朱诺市1998，2002，2006，2022，2023五年的社会满意度调查\cite{4}，并摒除其无影响和不知道的无效评价，将剩下的评价依据李斯特量表分成了五级，并进行了量化以使结果保持在1以内。同时我们查找了这五年的游客人数\cite{5}来和社会满意度进行了数据拟合并得到了如下结果：
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{satisfaction.png}
+	\caption{satisfaction}\label{fig:satisfaction}
+\end{figure}
+其中，$a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$。最后，为了消除量纲带来的影响以来衡量社会满意度对目标函数的影响，我们给数据加上了一个合适的系数$k4$。得到的公式4如下：
+\begin{equation}
 	\begin{cases}
 		S_{residents}=a_{1}N_{t}^2+a_{2}N_{t} + b_{1} \\
 		S=k_{4}S_{residents}
 	\end{cases}
-	\end{equation}
+\end{equation}
+
+
 	\begin{equation}
 	\begin{cases}
 		\frac{\mathrm{d}C_{waste}}{\mathrm{d}t}=\alpha_1P_{waste} \\
@@ -127,20 +147,103 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 		\frac{\mathrm{d}C_{base}}{\mathrm{d}t}=\alpha_3P_e \\
 	\end{cases}
 	\end{equation}
-	\begin{equation}
-	\begin{cases}
-	P_{waste} = k_5\tau_tR_e\\
-	P_{water} = k_6\tau_tR_e\\
-	P_{e}=k_7\tau_{t}R_e \\
-	k_5+k_6+k_7 \leqslant 0.4
-	\end{cases}
-	\end{equation}
-	\begin{equation}
-		Target equation:Z=R_e+S-E
-	\end{equation}
 
-\subsection{Model 2}
-\subsubsection{Conclusion of Model 2}
+基建的额外投入方面，由于税率变化后的数据不够用于进行拟合以及考虑到税收对游客数量和消费意愿的抑制效应以及对消费的增长效应，结合实际已有的数据，认为在一定范围内波动时游客消费不受影响，简化为常数考虑。最后结合基建投入在政府实际分配中的比值，限定上限进行约束后得到公式6如下：
+\begin{equation}
+	\begin{cases}
+		P_{waste} = k_5\tau_tR_e\\
+		P_{water} = k_6\tau_tR_e\\
+		P_{e}=k_7\tau_{t}R_e \\
+		k_5+k_6+k_7 \leqslant 0.4
+	\end{cases}
+\end{equation}
+\subsubsection{找到约束条件}
+在经济方面，很显然我们有$R_e$必须要大于等于0。为了限制税率的值，我们根据xxx得出税率应小于等于8\%。因此有公式7：
+\begin{equation}
+	Financial:
+	\begin{cases}
+		R_{e}\geqslant 0 \\
+		\tau_{t}\leqslant 8\% \\
+	\end{cases}
+\end{equation}
+
+游客人数方面，我们依据朱诺市的政策\cite{6}得出了每天的游客的人数限制。公式8如下:
+\begin{equation}
+	Tourism:
+		0\leqslant N_{t}\leqslant N_{tmax}\\
+\end{equation}
+
+环境方面，以NASA的冰川融化数据\cite{7}为基础，通过度日因子法来进行量化计算，最后通过二氧化碳影响温度进而影响速度的因素来限定了二氧化碳的最大排放量。而在水资源最大承载量和废物处理最大承载量上面，考虑到旺季人数占全年的比例以及对于基建的压力，升大设置1.2倍日平均承载量作为上限来限制人数。公式9如下：
+\begin{equation}
+	Environmental:
+	\begin{cases}
+		N_{t}\cdot CO_{2p}\leqslant CO_{2max} \\
+		0.012N_t\leqslant \frac{1.2}{365}C_{waste} \\
+		0.012N_t\leqslant \frac{1.2}{365}C_{water}
+	\end{cases}
+\end{equation}
+
+社会满意度方面，经过合适的量化后，我们将60作为及格线。故公式10如下：
+\begin{equation}
+	Societal:\ S_{residents} \geqslant 60
+\end{equation}	
+\subsubsection{多起点的混合优化策略}
+为了兼顾多个因素对目标函数的影响，包括旅游收入，环境质量和居民满意度。而这几个变量又被其他因素所影响，包括基建投入比，游客人数，税率等，我们使用了多起点的混合优化策略算法来对目标函数的影响因子进行同时的优化，伪代码如下：
+\begin{algorithm}
+	\caption{多起点的混合优化策略}
+	\begin{algorithmic}[1]
+		\STATE Initialize variables
+		\FOR{each element in the list}
+			\IF{condition is met}
+				\STATE Perform action
+			\ELSE
+				\STATE Perform another action
+			\ENDIF
+		\ENDFOR
+		\STATE Return result
+	\end{algorithmic}
+\end{algorithm}
+
+要输入的参数包括：
+
+模型中的参数包括：
+
+模型的解决方案和输出：
+\subsubsection{计算结果}
+$CO_{2max}$的计算过程，$C_{waste}$和$C_{water}$的计算过程。
+
+旅游总收入上，根据以往的数据，我们给旅客平均消费值赋值为x。经过我们的计算可以得到游客每年人数应为x人，$P_e$为x，结合以往的数据来看，这个数据是相对合理的。
+
+居民满意度上，将旅客人数带进拟合方程后可以得到居民满意度为x，符合我们的预期范围。
+
+环境质量上，经过我们的ATP法得出$k1 = X$, $k2 = X$, $k3 = X$，将旅游人数和$CO_{2max}$, $C_{waste}$,$C_{water}$, $N_t$带入方程后得出结果为x，符合我们的预期范围。
+\subsection{敏感度分析}
+因为我们使用了混合优化策略，故我们同时分析了输入变量$N_t$, $\tau _t$, $k5$, $k6$, $k7$的局部敏感度和全局敏感性，代码如下：
+\begin{algorithm}
+	\caption{$Sensitive Analysis$}
+	\begin{algorithmic}[1]
+		\STATE Initialize variables
+		\FOR{each element in the list}
+			\IF{condition is met}
+				\STATE Perform action
+			\ELSE
+				\STATE Perform another action
+			\ENDIF
+		\ENDFOR
+		\STATE Return result
+	\end{algorithmic}
+\end{algorithm}
+
+结果如下图所示:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{sensitive.png}
+	\caption{Sensitive Analysis}\label{fig:sensitive}
+\end{figure}
+
+通过图片我们不难看出，旅客人数为关键的变量，其在局部和全局中的敏感性分别达到了x和x，远大于其他的输入变量，而这也符合朱诺市作为一个旅游城市收入受旅客人数影响较大的客观事实。
+\section{Solution to Problem2}
+\subsection{Conclusion of Model 2}
 The results are shown in Figure \ref{fig:result}, where $t$ denotes the time in seconds, and $c$ refers to the concentration of water in the boiler.
 
 \begin{figure}[htbp]
@@ -253,6 +356,7 @@ According to all those mentioned above, it is really worth to have a try on \LaT
 \bibitem{2} \url{https://juneau.org/wp-content/uploads/2024/01/CBJ-Cruise-Impacts-2023-Report-1.22.24.pdf}
 \bibitem{3} \url{https://alaskapublic.org/2023/08/07/crammed-with-tourists-juneau-wonders-what-will-happen-as-mendenhall-glacier-recedes/}
 \bibitem{4} \emph{A simple, easy \LaTeX\ template for MCM/ICM: EasyMCM}. (2018). Retrieved December 1, 2019, from\url{https://www.cnblogs.com/xjtu-blacksmith/p/easymcm.html}
+\bibitem{7} \url{https://earthobservatory.nasa.gov/images/151682/alaskas-mendenhall-glacier}
 \end{thebibliography}
 
 
@@ -277,11 +381,7 @@ Here are the program codes we used in our research.
 % 更多用法，请参考 listings 宏包文档
 
 % Python 代码示例
-\begin{lstlisting}[language=Python, name={test.py}]
-# Python code example
-for i in range(10):
-    print('Hello, world!')
-\end{lstlisting}
+
 
 % MATLAB 代码示例
 \begin{lstlisting}[language=MATLAB, name={test.m}]
