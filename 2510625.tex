@@ -10,7 +10,26 @@
 \problem{B}  % 请在此处填写题号
 % \usepackage{mathptmx}  % 这是 Times 字体，中规中矩 
 \usepackage{mathpazo}  % 这是 COMAP 官方杂志采用的更好看的 Palatino 字体，可替代以上的 mathptmx 宏包
-
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+   \end{center}
+  }
+\makeatother
 \title{An MCM Paper Made by Team 2510625}  % 标题
 
 % 如需要修改题头（默认为 MCM/ICM），请使用以下命令（此处修改为 MCM）
@@ -257,7 +276,7 @@ Regarding social satisfaction, after appropriate quantification, we set 60 as th
 
 \subsubsection{Multi-start Optimization Algorithm}
 Since our model has five decision variables, namely \(N_t\), \(\tau_t\), \(k_5\), \(k_6\) and \(k_7\), which interact with each other and have varying degree of influence on the objective function. In order to achieve relatively optimal conditions for each decision variable locally and at the same time strive for the global objective to be optimal, such as maximizing tourism revenue, minimizing environmental impact, and maximizing resident satisfaction, etc., we use a multi-start optimization strategy to optimize the various influencing factors of the objective function. The pseudocode is as follows:
-\begin{algorithm}
+\begin{breakablealgorithm}
 	\caption{Multi-start Optimization Algorithm}
 	\begin{algorithmic}[1]
 		\STATE \textbf{Input:} $n\_starts$,\ $Nmax$
@@ -288,7 +307,7 @@ Since our model has five decision variables, namely \(N_t\), \(\tau_t\), \(k_5\)
 		\vspace{0.2cm}
 		\RETURN $best\_result$
 	\end{algorithmic}
-\end{algorithm}
+\end{breakablealgorithm}
 
 \textbf{The solution and output of the model:} The model maximizes economic, environmental, and social benefits through multi-start optimization of five decision variables. In the initialization phase, the algorithm first sets up an empty optimal solution container and an infinite initial optimal objective value as the benchmark. Then, the algorithm generates multiple sets of different starting points within reasonable value ranges to ensure that the algorithm can explore a larger solution space. During the optimization loop phase, the algorithm performs a complete optimization attempt for each set of starting points. Each attempt uses the \textbf{Sequential Least Squares Quadratic Programming} (SLSQP) method to find the solution that optimizes the objective function, considering all constraints, such as visitor number limits, tax rate range, investment ratio restrictions, etc.). If an optimization attempt is successful and the resulting objective function value is better than the currently recorded optimal value, the optimal solution and objective value are updated. This process repeats until all starting points have been tested, and the globally optimal result is retained.
 
@@ -301,7 +320,7 @@ Since our model has five decision variables, namely \(N_t\), \(\tau_t\), \(k_5\)
 
 \subsection{Sensitivity Analysis}
 Since we have used a multi-start optimization strategy, we use \textbf{Sobol Analysis} to simultaneously analyze the local sensitivity and global sensitivity of the input variables $N_t$, $\tau_t$, $k_5$, $k_6$ and $k_7$. The pseudocode is as follows:
-\begin{algorithm}
+\begin{breakablealgorithm}
 	\caption{Sensitivity Analysis}
 	\begin{algorithmic}[1]
 		\STATE \textbf{Input:} $n\_samples$
@@ -328,7 +347,7 @@ Since we have used a multi-start optimization strategy, we use \textbf{Sobol Ana
 		\vspace{0.2cm}
 		\RETURN $Si$
 	\end{algorithmic}
-\end{algorithm}
+\end{breakablealgorithm}
 
 The results are shown in the figure below:
 \begin{figure}[H]
