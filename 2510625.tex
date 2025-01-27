@@ -243,17 +243,9 @@ $CO_{2max}$的计算过程，$C_{waste}$和$C_{water}$的计算过程。
 
 通过图片我们不难看出，旅客人数为关键的变量，其在局部和全局中的敏感性分别达到了x和x，远大于其他的输入变量，而这也符合朱诺市作为一个旅游城市收入受旅客人数影响较大的客观事实。
 \section{Solution to Problem2}
-\subsection{Conclusion of Model 2}
-The results are shown in Figure \ref{fig:result}, where $t$ denotes the time in seconds, and $c$ refers to the concentration of water in the boiler.
+\subsection{建立分流模型}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=.8\textwidth]{water.png}
-\caption{The result of Model 2}\label{fig:result}
-\end{figure}
-
-\clearpage
-\subsubsection{Commetary on Model 2}
+\subsection{Commetary on Model 2}
 The instance of long and wide tables are shown in Table \ref{tb:longtable}.
 
 % 长表格示例，更多用法请参考 longtable 宏包文档
@@ -313,17 +305,12 @@ Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:l
 \caption{Two images}\label{fig:subfigures}
 \end{figure}
 
-\section{Strengths and Weaknesses}
-\subsection{Strengths}
-\begin{itemize}
-    \item First one...
-    \item Second one ...
-\end{itemize}
+\section{Solution to Problem3}
+为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
 
-\subsection{Weaknesses}
-\begin{itemize}
-    \item Only one ...
- \end{itemize}
+因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
+
+通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。根据我们模型跑出来的结果显示，xxx。这些数据和往年相比具有合理性，符合实际的基本预期。
 
 
 % 以下为信件/备忘录部分，不需要可自行去掉
@@ -331,21 +318,27 @@ Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:l
 % 请在第二个花括号内填写标题，如「信件」（Letter）或「备忘录」（Memorandum）
 \begin{letter}{Memorandum}
 \begin{flushleft}  % 左对齐环境，无首行缩进
-\textbf{To:} Heishan Yan\\
-\textbf{From:} Team 1234567\\
-\textbf{Date:} October 1st, 2019\\
-\textbf{Subject:} A better choice than MS Word: \LaTeX
+\textbf{To:} 朱诺市政府\\
+\textbf{From:} Team 2510625\\
+\textbf{Date:} January 27th, 2025\\
+\textbf{Subject:} 关于政府在旅游业上的一些建议
 \end{flushleft}
 
-In the memo, we want to introduce you an alternate typesetting program to the prevailing MS Word: \textbf{\LaTeX}. In fact, the history of \LaTeX\ is even longer than that of MS Word. In 1970s, the famous computer scientist Donald Knuth first came out with a typesetting program, which named \TeX\ \ldots
+随着旅游市场的不断发展，朱诺市作为阿拉斯加的首府，拥有丰富的自然景观和独特的文化魅力，吸引了大量游客前来观光旅游。为了更好地了解旅游市场的发展趋势，评估各种措施对旅游市场的影响，并提出优化建议，我们进行了深入的市场调研和数据分析。
 
-Firstly, \ldots
+首先是关于旅游市场的预测，根据我们的市场调研和数据分析，预计未来几年朱诺市的旅游市场将呈现以下趋势：
+\textbf{游客数量增长：}随着全球经济的复苏和人们生活水平的提高，预计未来几年朱诺市的游客数量将呈现稳步增长的趋势。特别是来自亚洲和欧洲的游客数量将有较大幅度的增加。
+\textbf{旅游季节变化：}虽然夏季仍然是朱诺市的旅游旺季，但随着冬季旅游项目的不断丰富，如狗拉雪橇、冰钓等，冬季旅游市场也将逐渐升温。
 
-Secondly, \ldots
+二是各种措施的影响，为了促进朱诺市旅游市场的发展，我们分析了一系列措施，这些措施对旅游市场产生了以下影响：
+\textbf{适量提高税率：}适量提高税率短时间不会对旅游人数产生较大的影响，而税率的提高可以增加旅游业带来的收入，额外收入增加后可以对基建投入更多的金钱以来提高水资源和废物处理承载能力。
+\textbf{限制每日的游客人数：}限制每日的人数有助于缓解基础设施压力，提高居民满意度，同时如果限制的人数控制在一个比奥较好的值也能确保每日的收入保持在一个比较高的水平。
 
-Lastly, \ldots
+最后是一些优化的建议：
+\textbf{加强旅游基础设施建设：}继续加大对旅游基础设施的投入，进一步改善住宿、餐饮、交通等方面的条件。特别是要加大对偏远地区的旅游基础设施建设，提高旅游的可达性和便利性。有利于游客参观更多的景点，分散个别热门景点的压力。
+\textbf{提升旅游服务质量：}加强对旅游从业人员的培训，提高旅游服务的质量和水平。特别是要加强对导游、酒店服务人员等的培训，提高他们的专业素质和服务意识。这样可以提升朱诺市的旅游风评，增加游客前来的意愿。
+\textbf{加强市场营销推广：}继续在国内外主要旅游市场进行市场营销推广，提高朱诺市的知名度和美誉度。可以通过举办旅游推介会、参加旅游展会等方式，向更多的游客宣传朱诺市的旅游资源和旅游产品以来吸引更多游客和刺激游客消费，提高游客平均消费水平。
 
-According to all those mentioned above, it is really worth to have a try on \LaTeX! 
 \end{letter}
 
 
@@ -357,6 +350,7 @@ According to all those mentioned above, it is really worth to have a try on \LaT
 \bibitem{3} \url{https://alaskapublic.org/2023/08/07/crammed-with-tourists-juneau-wonders-what-will-happen-as-mendenhall-glacier-recedes/}
 \bibitem{4} \emph{A simple, easy \LaTeX\ template for MCM/ICM: EasyMCM}. (2018). Retrieved December 1, 2019, from\url{https://www.cnblogs.com/xjtu-blacksmith/p/easymcm.html}
 \bibitem{7} \url{https://earthobservatory.nasa.gov/images/151682/alaskas-mendenhall-glacier}
+\bibitem{8} \url{https://www.jiuzhai.com/news/number-of-tourists/}
 \end{thebibliography}
 
 
