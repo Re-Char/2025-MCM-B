@@ -415,29 +415,43 @@ In Section 3.1, we used a multi-starting point hybrid optimization strategy to c
 根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
 
 \section{Solution to Problem3}
-\subsection{生成不同景点的可持续发展模型}
-为了进行不同景点之间分流，我们需要获取各个景点的可持续发展模型以确定发展策略，便于获取在某个实际游客数量下的综合收益。因此，我们需要获得具体每个景点的相关数据。因为不同景点的环境条件、人均消费、基建承载量等不同，游客人数导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
+\subsection{Sustainable Development Models for Different Tourist Attractions}
+To manage visitor flow between different attractions, we need to obtain sustainable development models for each attraction to determine development strategies and calculate comprehensive benefits at specific tourist volumes. Therefore, we need to gather relevant data for each specific attraction. Because different attractions have varying environmental conditions, per capita consumption, infrastructure capacity, and other factors, the infrastructure pressure and social satisfaction caused by tourist numbers also vary greatly. Thus, we need to modify the parameters of Model One to adapt to the actual situations of different attractions.
+%为了进行不同景点之间分流，我们需要获取各个景点的可持续发展模型以确定发展策略，便于获取在某个实际游客数量下的综合收益。因此，我们需要获得具体每个景点的相关数据。因为不同景点的环境条件、人均消费、基建承载量等不同，游客人数导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
 
-我们主要考虑对朱诺市的两个人们景点门登霍尔冰川和赏鲸雨林进行分析。在模型一的基础上，我们搜集了赏鲸的相关数据，包括赏鲸项目的年游客人数、平均游客消费等，并对相关的参数进行了调整，由于参与赏鲸景点的游客同样主要在朱诺市附近活动，我们考虑赏鲸景点的最大承载量等与门登霍尔冰川的近似，同时，由于赏鲸项目并未面临很严重的环境问题，我们上调了最大碳排放量，以及环境投资的回报系数，以更好地模拟实际的情况。
-我们对两个模型分别进行了单独的优化计算，获取到了最优游客人数，最优税收以及最优的支出分配策略，接着，我们构建了分流模型以优化实际的分流人数。
-\subsection{建立分流模型}
-假设模型中有$n$个子模型，代表了具体的$n$个景点。
-每个模型中的实际人数为$N_{ti}$，，最优人数为$N_{ei}$。对于实际人数大于最优人数的景点$n_i$，我们希望将超出最优人数的部分分流去实际人数较少的景点$n_j$，则
-$C_{i-j} = C_{pi-j}*\Delta N_{i-j}$，代表此次分流的总成本等于将一个人从$n_i$分流到$n_j$的宣传成本乘以分流走的人数，则宣传成本总共为$C = \sum_{i,j} C_{i-j}$，
-故决策变量为:
+We mainly focus on analyzing two popular attractions in Juneau: the Mendenhall Glacier and the whale watching rainforest. Building upon Model One, we collected relevant data for whale watching activities, including annual visitor numbers and average tourist spending, and adjusted the related parameters accordingly. Since tourists participating in whale watching activities mainly stay around Juneau, we consider the maximum carrying capacity of the whale watching site to be similar to that of Mendenhall Glacier. Additionally, as the whale watching program does not face severe environmental issues, we increased the maximum carbon emissions limit and the environmental investment return coefficient to better simulate actual conditions.
+%我们主要考虑对朱诺市的两个人们景点门登霍尔冰川和赏鲸雨林进行分析。在模型一的基础上，我们搜集了赏鲸的相关数据，包括赏鲸项目的年游客人数、平均游客消费等，并对相关的参数进行了调整，由于参与赏鲸景点的游客同样主要在朱诺市附近活动，我们考虑赏鲸景点的最大承载量等与门登霍尔冰川的近似，同时，由于赏鲸项目并未面临很严重的环境问题，我们上调了最大碳排放量，以及环境投资的回报系数，以更好地模拟实际的情况。
+We performed separate optimization calculations for both models to determine the optimal number of visitors, optimal tax revenue, and optimal expenditure allocation strategies. Then, we constructed a diversion model to optimize the actual distribution of visitors.
+%我们对两个模型分别进行了单独的优化计算，获取到了最优游客人数，最优税收以及最优的支出分配策略，接着，我们构建了分流模型以优化实际的分流人数。
+
+\subsection{Establish a Flow-Distribution Model}
+Suppose there are $n$ sub-models in the model, representing $n$ specific attractions.
+The actual number of visitors for each model is $N_{ti}$, and the optimal number is $N_{ei}$. For attractions $n_i$ where the actual number exceeds the optimal number, we want to divert the excess visitors to attractions $n_j$ with fewer actual visitors, where
+$C_{i-j} = C_{pi-j}\times \Delta N_{i-j}$, representing that the total cost of this diversion equals the promotional cost of diverting one person from $n_i$ to $n_j$ multiplied by the number of people diverted. The total promotional cost is $C = \sum_{i,j} C_{i-j}$,
+Therefore, the decision variables are:
+%假设模型中有$n$个子模型，代表了具体的$n$个景点。
+%每个模型中的实际人数为$N_{ti}$，，最优人数为$N_{ei}$。对于实际人数大于最优人数的景点$n_i$，我们希望将超出最优人数的部分分流去实际人数较少的景点$n_j$，则
+%$C_{i-j} = C_{pi-j}*\Delta N_{i-j}$，代表此次分流的总成本等于将一个人从$n_i$分流到$n_j$的宣传成本乘以分流走的人数，则宣传成本总共为$C = \sum_{i,j} C_{i-j}$，
+%故决策变量为:
 \begin{equation}
     \Delta N_{i,j} (1 \leq i,j \leq n)
 \end{equation}
-目标函数为:
+Objective function is:
+%目标函数为:
 \begin{equation}
 	Z = \sum_{i=1}^{n} Z_i(N_{ti}) - \frac{C}{C_{std}}
 \end{equation}
-其中，$C_{std}$是估计的最大宣传成本，用于进行归一化去除宣传支出的量纲。
-\subsection{计算结果}
-这里以朱诺市两个景点门登霍尔冰川和赏鲸景点为例来具体展示分流模型的结果。
-我们希望将游客从门登霍尔冰川分流至赏鲸景点以减少冰川面临的环境压力，我们首先对两个子模型进行了分别的优化，计算出了最佳人数、税率与支出分配比例，并将其作为输入调整分流模型。紧接着我们估计了分流每人的大致宣传成本，输入到分流模型中完成了模型的构建。
-具体的，我们采用模拟退火算法进行求解。通过设定一个初始温度，控制步长大小，模拟固体退温的过程，以求解模型的全局最优解。
-经过计算，我们得出分流人数在329888人左右最佳，分流比例达到在百分之二十左右。参考我们模型的结果，朱诺政府可以考虑采取更好的宣传策略，以获取更好的总体收益。
+Where $C_{std}$ is the estimated maximum promotional cost, used for normalization to remove the dimension of promotional expenditure.
+%其中，$C_{std}$是估计的最大宣传成本，用于进行归一化去除宣传支出的量纲。
+\subsection{Calculation Result}
+Taking Juneau's two attractions - Mendenhall Glacier and whale watching site - as an example to specifically demonstrate the results of the flow distribution model.
+We aim to divert tourists from Mendenhall Glacier to the whale watching site to reduce environmental pressure on the glacier. We first optimized the two sub-models separately, calculating the optimal number of visitors, tax rates, and expenditure allocation ratios, and used these as inputs to adjust the flow distribution model. Then we estimated the approximate promotional cost per person diverted and input this into the flow distribution model to complete its construction.
+Specifically, we used the simulated annealing algorithm to solve the model. By setting an initial temperature and controlling step size to simulate the cooling process of a solid, we sought to find the global optimal solution for the model.
+Through calculations, we determined that the optimal number of people to divert is around 329,888, with a diversion ratio of about twenty percent. Based on our model's results, the Juneau government could consider adopting better promotional strategies to achieve better overall benefits.
+%这里以朱诺市两个景点门登霍尔冰川和赏鲸景点为例来具体展示分流模型的结果。
+%我们希望将游客从门登霍尔冰川分流至赏鲸景点以减少冰川面临的环境压力，我们首先对两个子模型进行了分别的优化，计算出了最佳人数、税率与支出分配比例，并将其作为输入调整分流模型。紧接着我们估计了分流每人的大致宣传成本，输入到分流模型中完成了模型的构建。
+%具体的，我们采用模拟退火算法进行求解。通过设定一个初始温度，控制步长大小，模拟固体退温的过程，以求解模型的全局最优解。
+%经过计算，我们得出分流人数在329888人左右最佳，分流比例达到在百分之二十左右。参考我们模型的结果，朱诺政府可以考虑采取更好的宣传策略，以获取更好的总体收益。
 
 
 % 以下为信件/备忘录部分，不需要可自行去掉
