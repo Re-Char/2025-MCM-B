@@ -42,13 +42,13 @@
 \begin{abstract}
     Here is the abstract of our paper.
 
-    \textbf{For Problem1}, 为了达到可持续性发展，我们考虑了环境、经济、社会三方面的因素。通过数据分析，我们发现游客人数、税率等与收入有影响；而游客人数又会影响碳排放，进而影响冰川融化速度等，同时游客数量还会对基建等造成较大压力，引起环境污染与居民不满。同时，我们考虑到财政收入的再分配计划，通过不同的支出占比，政府能够优化基建承载量与最大碳排放等内容，实现对模型的反馈作用。为此，我们设计了一个综合收入、社会满意度和环境污染程度的目标函数，以完整构建起可持续发展模型，并采用多起点优化算法寻找最优解。基于朱诺市的历史数据，我们对社会满意度和游客人数进行了非线性拟合，拟合可靠度为0.7423。通过去量纲处理，我们将环境污染指数、社会满意度指数与经济收益指数相加得到目标函数，用以评估总体收益。
+    \textbf{For Problem1}, 通过数据分析，我们发现游客人数、税率和基建投入占比对收入有影响。为此，我们构建了一个综合收入、社会满意度和环境质量的目标函数，并采用多起点优化算法寻找最优解。基于朱诺市的历史数据，我们对社会满意度和游客人数进行了非线性拟合，拟合可靠度为0.7423。通过去量纲处理，我们量化了社会满意度和环境质量对目标函数的影响。
 	模型结果显示，当游客人数为1,431,579人，游客税率为8\%，废物管理投入占比为0.179，水资源管理投入占比为0.113，环境保护投入占比为0.108时，总收入达到272亿美元，$\text{CO}_2$排放量为1,331,368.42吨，居民满意度为67.18（满分100），环境指数为0.4876（满分1，越小越好）。
-	在敏感性分析中，我们评估了变量的局部和全局敏感性，发现游客人数是关键变量。最后，我们使用种群迭代算法和帕累托优化,构建了多目标优化模型，对之前的单目标模型的结果进行了验证以确保可靠。
+	在敏感性分析中，我们评估了变量的局部和全局敏感性，发现游客人数是关键变量。最后，我们使用种群迭代算法和帕累托优化对模型进行了验证。
 
     \textbf{For Problem2}, 为了去适应另一个景点，我们需要结合该景点的实际情况，如游客人数，游客人均消费，当地的水资源和废物处理承载能力等因素来修改可持续旅游发展模型中的关键参数。在我们的文章中，我们以位于中国四川省的九寨沟景区为例展示了修改模型的过程以及得到的相应结果并发现结果基本符合当地的客观情况。
 
-    \textbf{For Problem3}, 为了通过我们的模型为朱诺政府的游客推广分流措施提建议，我们在之前模型的基础上构建了一个分流模型。我们根据主景点与用作分流的副景点的实际情况，分别优化之前的模型，构建其独立的可持续发展模型，并求出最优的游客人数、税收、财政支出分配策略等，在保持这些变量按照最优策略取值的前提下，我们可以通过输入实际的游客人数获得对应的目标函数值。在完成了子模型的构建后，我们构建了一个分流模型，并根据实际确定了通过宣传将一个游客分流所消耗的宣传成本，将景点的分流人数作为决策变量，通过目前的实际人数与预计分流情况求得各景点分流后的人数，并根据游客人数求得各景点的目标函数值。我们将目标函数值相加并减去去量纲后的宣传总成本获得评估总收益的分流模型目标函数，完成模型构建。具体的，我们以门登霍尔冰川为主景点和赏鲸景点为分流景点进行实际的构建，采用模拟退火算法进行模型求解，最终认为朱诺政府在分流329888人左右，分流比例约为百分之20时，能够达到总体收益的最大化。
+    \textbf{For Problem3}, 
 
 	\textbf{For the Memorandum}, 基于上述的模型的结果的分析，我们预测了之后游客数量可能会发生的变化并考虑了季节性因素，分析了政府措施带来的影响，并在最后提出了三点优化的建议。
     % 美赛论文中无需注明关键字。若您一定要使用，
@@ -103,9 +103,9 @@ For Problem1:
 	%假设游客消费带来的正面影响会带动就业岗位等间接影响，总体可由游客消费统一衡量。为简化模型，只考虑对旅游业经济影响最重要的因素，即游客消费，不考虑旅游业发展带来的就业岗位等间接经济影响。
 	\item It is assumed that changes in tax rates within a reasonable range will not have a significant impact on tourist consumption and the number of tourists. This is because increasing taxes does not significantly affect the growth in the number of tourists, and at the same time, it takes into account the combined effect of reduced willingness to consume and increased tourist consumption due to tax increases.
 	%假设税收在一定合理范围内变动时不会对游客消费和游客人数产生剧烈影响。因为提高税收并没有对游客人数增长造成显著的影响，同时考虑到税收增长带来的消费意愿降低和游客消费提高的综合效应。
-	\item To simplify the model, it is assumed that the per capita consumption of tourists is a constant. Based on the analysis of data from recent years, there has been no significant fluctuation in the per capita consumption of tourists, and it has not had a significant inhibitory effect on the number of tourists. It can be considered a constant when analyzing and optimizing for a shorter period of one year or several years.
+	\item To simplify the model, it is assumed that the per capita consumption of tourists is a constant. Based on the analysis of data from recent years,\cite{4} there has been no significant fluctuation in the per capita consumption of tourists, and it has not had a significant inhibitory effect on the number of tourists. It can be considered a constant when analyzing and optimizing for a shorter period of one year or several years.
 	%为简化模型，假设游客人均消费为常数。由近几年的数据分析，游客人均消费并没有明显波动，对游客人数并没有明显的抑制作用，可认为在对一年内或近几年的较短周期的分析优化时是常量。
-	\item Considering the infrastructure pressure and its associated implicit costs and environmental pollution, based on resident survey reports and actual conditions, the waste treatment system, which residents consider to be under the greatest pressure, and the water supply system, which is prone to stress, are chosen as representatives to measure implicit costs. It is assumed that the pressure conditions and trends of other aspects such as traffic pressure and energy supply are similar to these two, and their carrying capacities are used to measure them, ignoring their specific mathematical relationships in the model.
+	\item Considering the infrastructure pressure and its associated implicit costs and environmental pollution, based on resident survey reports and actual conditions,\cite{5} the waste treatment system, which residents consider to be under the greatest pressure, and the water supply system, which is prone to stress, are chosen as representatives to measure implicit costs. It is assumed that the pressure conditions and trends of other aspects such as traffic pressure and energy supply are similar to these two, and their carrying capacities are used to measure them, ignoring their specific mathematical relationships in the model.
 	%考虑基建压力与其所带来的隐性成本与环境污染，根据居民调查报告与实际情况，选择居民认为压力最大的废物处理系统，与容易出现压力的水供应系统作为隐性成本的代表进行衡量。假设其他如交通压力与能源供应等所受的压力情况与趋势与这两者相似，并由这两者的承载量衡量，在模型中忽略其具体的数学关系。
 	\item It is assumed that expenditures can directly reflect in the carrying capacity and maximum carbon emissions, and enable their linear growth. To simplify the model and evaluation, considering the time-lag effect of investments on infrastructure and other aspects in the current year, it is simplified into a linear function, and the immediate benefits of expenditures are adjusted by regulating the coefficients in front of them.
 	%假设支出能够直接反馈到承载量与最大碳排放量里面，并且使得其获得线性的增长。为简化模型与评测，综合考虑时间滞后效应下投入对当年的基建等的影响，将其简化为线性函数，并通过调节其前的系数调整支出的即时收益。
@@ -150,8 +150,8 @@ The primary notations used in this paper are listed in the following Table.
 	\(\tau_{t}\) & Tax rate \\
 	\(P_{t}\) & Average spending per tourist \\
 	\(E\) & Environmental Pollution Index \\
-	\(\text{CO}_{2max}\) & Maximum allowed annual \(\text{CO}_{2}\) emissions \\
-	\(\text{CO}_{2p}\) & Carbon emissions per person \\
+	\(CO_{2max}\) & Maximum allowed annual \(\text{CO}_{2}\) emissions \\
+	\(CO_{2p}\) & Carbon emissions per person \\
 	\(C_{waste}\) & The number of annual tourists that the city's waste treatment system can accommodate. \\
 	\(C_{water}\) & The number of annual tourists that the city's drinking water supply system and water pollution treatment system can accommodate. \\
 	\(S_{residents}\) & Residential satisfaction \\
@@ -193,12 +193,12 @@ Where $R_{estandard}$ is the theoretical maximum value set for income. We believ
 
 In terms of environmental quality, we mainly consider the impact of three factors: carbon dioxide emissions, water consumption, and waste generation, all of which are closely related to the number of tourists.
 %环境质量方面，我们主要考虑三个因素的影响：二氧化碳排放量，水的消耗量以及废物的产生量，而这三个因素都与游客人数密切相关。
-For the carbon emission factor, we mainly consider the glacier melting problem in Juneau caused by excessive tourism. According to NASA data, the Mendenhall Glacier melted approximately 1.6 kilometers between 1984-2023 over 40 years, with an average melting rate of 40 meters per year, and its melting speed needs to be controlled. We can use the degree-day factor method to estimate the glacier melting rate:
+For the carbon emission factor, we mainly consider the glacier melting problem in Juneau caused by excessive tourism. According to NASA data,\cite{6} the Mendenhall Glacier melted approximately 1.6 kilometers between 1984-2023 over 40 years, with an average melting rate of 40 meters per year, and its melting speed needs to be controlled. We can use the \textbf{degree-day factor method} to estimate the glacier melting rate:
 %对于碳排放因素，我们主要考虑朱诺市由于过度旅游造成的冰川融化问题。根据NASA的数据，门登霍尔冰川在1984-2023年40年间融化了约16公里，平均每年融化40m，需要控制其融化的速度。我们可以使用度日因子法估计冰川的融化速度：
 \begin{equation}
-    M=\text{DDF}\times \text{DDT}
+    M=DDF\times DDT
 \end{equation}
-Where DDF is the degree-day factor, which varies little and is close to constant, and DDT is the positive temperature sum, which is directly affected by temperature. To control the rate of glacier melting, the key is to control temperature rise, and carbon emissions are the main factor affecting temperature rise. According to the \textit{Paris Agreement}, the average annual temperature rise between 1850-2100 should be controlled between 1.5-2.0 degrees, and we use 1.5 degrees as the maximum temperature rise to calculate the maximum carbon emissions.
+Where \textbf{DDF} is the degree-day factor, which varies little and is close to constant, and \textbf{DDT} is the positive temperature sum, which is directly affected by temperature. To control the rate of glacier melting, the key is to control temperature rise, and carbon emissions are the main factor affecting temperature rise. According to the \textit{Paris Agreement}, the average annual temperature rise between 1850-2100 should be controlled between 1.5-2.0 degrees, and we use 1.5 degrees as the maximum temperature rise to calculate the maximum carbon emissions.
 %其中，DDF是度日因子，变化小接近常量，而DDT是正积温，受到温度的直接影响。想要控制冰川融化的速度，关键在于控制温度的升高，而碳排放是影响温度升高的主要因素。根据《巴黎协定》的规定，1850-2100年间年平均气温升高尽量控制在1.5度-2.0度，我们以1.5度为温度升高的最大限度计算最大碳排放量。
 \begin{equation}
     \Delta T=\lambda\times \ln(CO_{2}/CO_{2pre-industrial})
@@ -216,7 +216,7 @@ Specifically, we believe that Juneau currently faces a relatively serious glacie
 %具体的，我们认为朱诺市目前面临较为严重的冰川融化问题，需要控制碳排放量，同时，其废物处理系统的承载量相比供水系统更小，人数的增长对其的压力更大，故而我们认为k1>k2>k3。
 
 Regarding social satisfaction, since tourist satisfaction has shown no significant changes in statistical data over a long time span, with overall satisfaction remaining around 99\%, we believe that tourist satisfaction will not change significantly when factors like taxation are reasonable. Therefore, we mainly consider resident satisfaction.
-We primarily collected social satisfaction survey results from Juneau for five years: 1998, 2002, 2006, 2022, and 2023\cite{4}. After excluding invalid evaluations marked as "no impact" and "don't know," the remaining evaluations were categorized into five levels according to the Likert scale. We converted the data scoring to a 100-point scale. Additionally, we looked up the tourist numbers for these five years\cite{5} and performed data fitting with social satisfaction, obtaining the following results:
+We primarily collected social satisfaction survey results from Juneau for five years: 1998, 2002, 2006, 2022, and 2023. After excluding invalid evaluations marked as "no impact" and "don't know," the remaining evaluations were categorized into five levels according to the Likert scale. We converted the data scoring to a 100-point scale. Additionally, we looked up the tourist numbers for these five years and performed data fitting with social satisfaction, obtaining the following results:
 %社会满意度方面，由于游客满意度在较长时间跨度的统计数据中均无明显变化，总体满意度停留在百分之99左右，我们认为游客满意度在税收等合理的情况下不会发生明显变化，故而主要考虑居民满意度。
 %我们主要收集了朱诺市1998，2002，2006，2022，2023五年的社会满意度调查结果\cite{4}，摒除其无影响和不知道的无效评价，剩下的评价依据李斯特量表分成了五级，我们按照100分制对数据的评分进行了扩大处理。同时我们查找了这五年的游客人数\cite{5}来和社会满意度进行了数据拟合并得到了如下结果：
 \begin{figure}[H]
@@ -260,8 +260,8 @@ In terms of economics, to limit the tax rate value and ensure the accuracy of as
 	\text{Financial}:\tau_{t}\leqslant 8\% \\
 \end{equation}
 
-Regarding tourist numbers, based on Juneau's policy\cite{6}, we derived the daily tourist number limit. Function 8 is as follows:
-%游客人数方面，我们依据朱诺市的政策\cite{6}得出了每天的游客的人数限制。公式8如下:
+Regarding tourist numbers, based on Juneau's policy\cite{7}, we derived the daily tourist number limit. Function 8 is as follows:
+%游客人数方面，我们依据朱诺市的政策\cite{7}得出了每天的游客的人数限制。公式8如下:
 \begin{equation}
 	\text{Touristic}:
 		0\leqslant N_{t}\leqslant N_{tmax}\\
@@ -373,7 +373,7 @@ From the figure, it is clear that the number of tourists is the most critical va
 
 \subsection{Model Validation}
 
-In Section 3.1, we used a multi-starting point hybrid optimization strategy to calculate our established sustainable tourism development model, and conducted sensitivity analysis in Section 3.2. Although our calculation results were relatively consistent with reality, we still raised some doubts about their accuracy. Therefore, we employed a multi-objective optimization strategy to recalculate the optimal conditions for the above model to verify the correctness of the multi-starting point hybrid optimization strategy in Section 3.1. Our optimization objectives remained maximizing income, minimizing environmental impact, and maximizing social satisfaction. In the new multi-objective optimization strategy, we used the DEAP (Distributed Evolutionary Algorithms in Python) framework to implement NSGA-II (Non-dominated Sorting Genetic Algorithm II). We then used Pareto optimization to obtain a series of optimal conditions under this model, and based on requirements and actual situations, selected the final result range between 1,300,000 and 1,450,000. This result both met our expectations and corroborated the results from the multi-starting point hybrid optimization strategy in Section 3.1. Additionally, we also performed Sobol sensitivity analysis on the multi-objective optimization strategy algorithm, obtaining results that were very similar to those in Section 3.2, which further proved the correctness of both the multi-objective optimization strategy algorithm in Section 3.3 and the multi-starting point hybrid optimization strategy algorithm in Section 3.1. The figure shows the execution results of the multi-objective optimization strategy algorithm.
+In Section 3.1, we used a multi-starting point hybrid optimization strategy to calculate our established sustainable tourism development model, and conducted sensitivity analysis in Section 3.2. Although our calculation results were relatively consistent with reality, we still raised some doubts about their accuracy. Therefore, we employed a multi-objective optimization strategy to recalculate the optimal conditions for the above model to verify the correctness of the multi-starting point hybrid optimization strategy in Section 3.1. Our optimization objectives remained maximizing income, minimizing environmental impact, and maximizing social satisfaction. In the new multi-objective optimization strategy, we used the \textbf{DEAP (Distributed Evolutionary Algorithms in Python)} framework to implement \textbf{NSGA-II (Non-dominated Sorting Genetic Algorithm II)}. We then used Pareto optimization to obtain a series of optimal conditions under this model, and based on requirements and actual situations, selected the final result range between 1,300,000 and 1,450,000. This result both met our expectations and corroborated the results from the multi-starting point hybrid optimization strategy in Section 3.1. Additionally, we also performed \textbf{Sobol sensitivity analysis} on the multi-objective optimization strategy algorithm, obtaining results that were very similar to those in Section 3.2, which further proved the correctness of both the multi-objective optimization strategy algorithm in Section 3.3 and the multi-starting point hybrid optimization strategy algorithm in Section 3.1. The figure shows the execution results of the multi-objective optimization strategy algorithm.
 %在3.1中，我们使用多起点的混合优化策略，计算了我们建立的可持续旅游发展模型，并在3.2中对其进行了敏感度分析。虽然我们的计算结果比较符合实际，但我们仍对其正确性提出了一些质疑。因此，我们又使用了多目标优化策略再次计算了以上模型的最优情况，以验证3.1中多起点的混合优化策略的正确性。我们的优化目标依然是收入最大化、环境影响最小化和社会满意度最大化。在新的多目标优化策略中，我们使用了DEAP（Distributed Evolutionary Algorithms in Python）框架来实现NSGA-II（非支配排序遗传算法II）。然后我们使用帕累托优化，得到该模型下的一系列最优情况，然后根据需求和实际情况，选取最终的结果范围在1300000到1450000之间。这一结果既符合我们的预期，也于3.1中的多起点混合优化策略的结果相互印证。此外，我们同样对多目标优化策略的算法进行了Sobol敏感度分析，得到的结果与3.2中的结果相差无几，这也进一步证明了3.3中的多目标优化策略算法的正确性，以及3.1中多起点的混合优化策略算法的正确性。如图是多目标优化策略算法的执行结果。
 
 \begin{figure}[htbp]
@@ -405,7 +405,7 @@ In Section 3.1, we used a multi-starting point hybrid optimization strategy to c
 \subsection{数据收集}
 因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
 
-通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
+通过对官网数据的收集\cite{10}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{JiuZhaiGou.jpg}
@@ -415,29 +415,43 @@ In Section 3.1, we used a multi-starting point hybrid optimization strategy to c
 根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
 
 \section{Solution to Problem3}
-\subsection{生成不同景点的可持续发展模型}
-为了进行不同景点之间分流，我们需要获取各个景点的可持续发展模型以确定发展策略，便于获取在某个实际游客数量下的综合收益。因此，我们需要获得具体每个景点的相关数据。因为不同景点的环境条件、人均消费、基建承载量等不同，游客人数导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
+\subsection{Sustainable Development Models for Different Tourist Attractions}
+To manage visitor flow between different attractions, we need to obtain sustainable development models for each attraction to determine development strategies and calculate comprehensive benefits at specific tourist volumes. Therefore, we need to gather relevant data for each specific attraction. Because different attractions have varying environmental conditions, per capita consumption, infrastructure capacity, and other factors, the infrastructure pressure and social satisfaction caused by tourist numbers also vary greatly. Thus, we need to modify the parameters of Model One to adapt to the actual situations of different attractions.
+%为了进行不同景点之间分流，我们需要获取各个景点的可持续发展模型以确定发展策略，便于获取在某个实际游客数量下的综合收益。因此，我们需要获得具体每个景点的相关数据。因为不同景点的环境条件、人均消费、基建承载量等不同，游客人数导致的基建压力和社会满意度也大不相同，所以我们需要修改模型一的参数以来适应不同景点的实际情况。
 
-我们主要考虑对朱诺市的两个人们景点门登霍尔冰川和赏鲸雨林进行分析。在模型一的基础上，我们搜集了赏鲸的相关数据，包括赏鲸项目的年游客人数、平均游客消费等，并对相关的参数进行了调整，由于参与赏鲸景点的游客同样主要在朱诺市附近活动，我们考虑赏鲸景点的最大承载量等与门登霍尔冰川的近似，同时，由于赏鲸项目并未面临很严重的环境问题，我们上调了最大碳排放量，以及环境投资的回报系数，以更好地模拟实际的情况。
-我们对两个模型分别进行了单独的优化计算，获取到了最优游客人数，最优税收以及最优的支出分配策略，接着，我们构建了分流模型以优化实际的分流人数。
-\subsection{建立分流模型}
-假设模型中有$n$个子模型，代表了具体的$n$个景点。
-每个模型中的实际人数为$N_{ti}$，，最优人数为$N_{ei}$。对于实际人数大于最优人数的景点$n_i$，我们希望将超出最优人数的部分分流去实际人数较少的景点$n_j$，则
-$C_{i-j} = C_{pi-j}*\Delta N_{i-j}$，代表此次分流的总成本等于将一个人从$n_i$分流到$n_j$的宣传成本乘以分流走的人数，则宣传成本总共为$C = \sum_{i,j} C_{i-j}$，
-故决策变量为:
+We mainly focus on analyzing two popular attractions in Juneau: the Mendenhall Glacier and the whale watching rainforest. Building upon Model One, we collected relevant data for whale watching activities, including annual visitor numbers and average tourist spending, and adjusted the related parameters accordingly. Since tourists participating in whale watching activities mainly stay around Juneau, we consider the maximum carrying capacity of the whale watching site to be similar to that of Mendenhall Glacier. Additionally, as the whale watching program does not face severe environmental issues, we increased the maximum carbon emissions limit and the environmental investment return coefficient to better simulate actual conditions.
+%我们主要考虑对朱诺市的两个人们景点门登霍尔冰川和赏鲸雨林进行分析。在模型一的基础上，我们搜集了赏鲸的相关数据，包括赏鲸项目的年游客人数、平均游客消费等，并对相关的参数进行了调整，由于参与赏鲸景点的游客同样主要在朱诺市附近活动，我们考虑赏鲸景点的最大承载量等与门登霍尔冰川的近似，同时，由于赏鲸项目并未面临很严重的环境问题，我们上调了最大碳排放量，以及环境投资的回报系数，以更好地模拟实际的情况。
+We performed separate optimization calculations for both models to determine the optimal number of visitors, optimal tax revenue, and optimal expenditure allocation strategies. Then, we constructed a diversion model to optimize the actual distribution of visitors.
+%我们对两个模型分别进行了单独的优化计算，获取到了最优游客人数，最优税收以及最优的支出分配策略，接着，我们构建了分流模型以优化实际的分流人数。
+
+\subsection{Establish a Flow-Distribution Model}
+Suppose there are $n$ sub-models in the model, representing $n$ specific attractions.
+The actual number of visitors for each model is $N_{ti}$, and the optimal number is $N_{ei}$. For attractions $n_i$ where the actual number exceeds the optimal number, we want to divert the excess visitors to attractions $n_j$ with fewer actual visitors, where
+$C_{i-j} = C_{pi-j}\times \Delta N_{i-j}$, representing that the total cost of this diversion equals the promotional cost of diverting one person from $n_i$ to $n_j$ multiplied by the number of people diverted. The total promotional cost is $C = \sum_{i,j} C_{i-j}$,
+Therefore, the decision variables are:
+%假设模型中有$n$个子模型，代表了具体的$n$个景点。
+%每个模型中的实际人数为$N_{ti}$，，最优人数为$N_{ei}$。对于实际人数大于最优人数的景点$n_i$，我们希望将超出最优人数的部分分流去实际人数较少的景点$n_j$，则
+%$C_{i-j} = C_{pi-j}*\Delta N_{i-j}$，代表此次分流的总成本等于将一个人从$n_i$分流到$n_j$的宣传成本乘以分流走的人数，则宣传成本总共为$C = \sum_{i,j} C_{i-j}$，
+%故决策变量为:
 \begin{equation}
     \Delta N_{i,j} (1 \leq i,j \leq n)
 \end{equation}
-目标函数为:
+Objective function is:
+%目标函数为:
 \begin{equation}
 	Z = \sum_{i=1}^{n} Z_i(N_{ti}) - \frac{C}{C_{std}}
 \end{equation}
-其中，$C_{std}$是估计的最大宣传成本，用于进行归一化去除宣传支出的量纲。
-\subsection{计算结果}
-这里以朱诺市两个景点门登霍尔冰川和赏鲸景点为例来具体展示分流模型的结果。
-我们希望将游客从门登霍尔冰川分流至赏鲸景点以减少冰川面临的环境压力，我们首先对两个子模型进行了分别的优化，计算出了最佳人数、税率与支出分配比例，并将其作为输入调整分流模型。紧接着我们估计了分流每人的大致宣传成本，输入到分流模型中完成了模型的构建。
-具体的，我们采用模拟退火算法进行求解。通过设定一个初始温度，控制步长大小，模拟固体退温的过程，以求解模型的全局最优解。
-经过计算，我们得出分流人数在329888人左右最佳，分流比例达到在百分之二十左右。参考我们模型的结果，朱诺政府可以考虑采取更好的宣传策略，以获取更好的总体收益。
+Where $C_{std}$ is the estimated maximum promotional cost, used for normalization to remove the dimension of promotional expenditure.
+%其中，$C_{std}$是估计的最大宣传成本，用于进行归一化去除宣传支出的量纲。
+\subsection{Calculation Result}
+Taking Juneau's two attractions - Mendenhall Glacier and whale watching site - as an example to specifically demonstrate the results of the flow distribution model.
+We aim to divert tourists from Mendenhall Glacier to the whale watching site to reduce environmental pressure on the glacier. We first optimized the two sub-models separately, calculating the optimal number of visitors, tax rates, and expenditure allocation ratios, and used these as inputs to adjust the flow distribution model. Then we estimated the approximate promotional cost per person diverted and input this into the flow distribution model to complete its construction.
+Specifically, we used the simulated annealing algorithm to solve the model. By setting an initial temperature and controlling step size to simulate the cooling process of a solid, we sought to find the global optimal solution for the model.
+Through calculations, we determined that the optimal number of people to divert is around 329,888, with a diversion ratio of about twenty percent. Based on our model's results, the Juneau government could consider adopting better promotional strategies to achieve better overall benefits.
+%这里以朱诺市两个景点门登霍尔冰川和赏鲸景点为例来具体展示分流模型的结果。
+%我们希望将游客从门登霍尔冰川分流至赏鲸景点以减少冰川面临的环境压力，我们首先对两个子模型进行了分别的优化，计算出了最佳人数、税率与支出分配比例，并将其作为输入调整分流模型。紧接着我们估计了分流每人的大致宣传成本，输入到分流模型中完成了模型的构建。
+%具体的，我们采用模拟退火算法进行求解。通过设定一个初始温度，控制步长大小，模拟固体退温的过程，以求解模型的全局最优解。
+%经过计算，我们得出分流人数在329888人左右最佳，分流比例达到在百分之二十左右。参考我们模型的结果，朱诺政府可以考虑采取更好的宣传策略，以获取更好的总体收益。
 
 
 % 以下为信件/备忘录部分，不需要可自行去掉
@@ -486,9 +500,13 @@ Finally, here are some optimization recommendations:
 \bibitem{1} \url{https://abc7.com/post/juneau-alaska-cruise-ship-limits-overtourism/15048713/}
 \bibitem{2} \url{https://juneau.org/wp-content/uploads/2024/01/CBJ-Cruise-Impacts-2023-Report-1.22.24.pdf}
 \bibitem{3} \url{https://alaskapublic.org/2023/08/07/crammed-with-tourists-juneau-wonders-what-will-happen-as-mendenhall-glacier-recedes/}
-\bibitem{4} \emph{A simple, easy \LaTeX\ template for MCM/ICM: EasyMCM}. (2018). Retrieved December 1, 2019, from\url{https://www.cnblogs.com/xjtu-blacksmith/p/easymcm.html}
-\bibitem{7} \url{https://earthobservatory.nasa.gov/images/151682/alaskas-mendenhall-glacier}
-\bibitem{8} \url{https://www.jiuzhai.com/news/number-of-tourists/}
+\bibitem{4} \url{https://www.seconference.org/wp-content/uploads/2024/02/Tourism-Panel-Heather-Haugland.pdf}
+\bibitem{5} \url{https://juneau.org/wp-content/uploads/2023/12/CBJ-Tourism-Survey-2023-Report-12.11.23.pdf}
+\bibitem{6} \url{https://earthobservatory.nasa.gov/images/151682/alaskas-mendenhall-glacier}
+\bibitem{7} \url{https://www.ktoo.org/2024/05/31/with-cruise-tourism-booming-juneau-has-negotiated-a-limit-on-how-many-passengers-can-come-off-ships/}
+\bibitem{8} {marti2003multi} Rafael Martí. \newblock Multi-Start Methods. \newblock In \emph{Handbook of Metaheuristics}, pages 355--368. Springer, 2003.
+\bibitem{9} Kalyanmoy Deb, Amrit Pratap, Sameer Agarwal, and T. Meyarivan. \newblock A fast and elitist multiobjective genetic algorithm: NSGA-II. \newblock \emph{IEEE Transactions on Evolutionary Computation}, 6(2):182--197, 2002.
+\bibitem{10} \url{https://www.jiuzhai.com/news/number-of-tourists/}
 \end{thebibliography}
 
 
