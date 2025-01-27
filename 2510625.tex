@@ -311,12 +311,15 @@ Since our model has five decision variables, namely \(N_t\), \(\tau_t\), \(k_5\)
 
 \textbf{The solution and output of the model:} The model maximizes economic, environmental, and social benefits through multi-start optimization of five decision variables. In the initialization phase, the algorithm first sets up an empty optimal solution container and an infinite initial optimal objective value as the benchmark. Then, the algorithm generates multiple sets of different starting points within reasonable value ranges to ensure that the algorithm can explore a larger solution space. During the optimization loop phase, the algorithm performs a complete optimization attempt for each set of starting points. Each attempt uses the \textbf{Sequential Least Squares Quadratic Programming} (SLSQP) method to find the solution that optimizes the objective function, considering all constraints, such as visitor number limits, tax rate range, investment ratio restrictions, etc.). If an optimization attempt is successful and the resulting objective function value is better than the currently recorded optimal value, the optimal solution and objective value are updated. This process repeats until all starting points have been tested, and the globally optimal result is retained.
 
-\subsubsection{计算结果}
-旅游总收入上，根据以往的数据，我们给旅客平均消费值赋值为x。经过我们的计算可以得到游客每年人数应为1431579人，$P_e$为272000000000美元，结合以往的数据来看，这个数据是相对合理的。
+\subsubsection{Calculation Results}
+Regarding total tourism revenue, based on historical data, we assign the value x to the average tourist expenditure. Through our calculations, we can determine that the annual number of tourists should be 1,431,579 people, with $P_e$ being \$4272,000,000,000. Looking at historical data, this figure appears relatively reasonable.
+%旅游总收入上，根据以往的数据，我们给旅客平均消费值赋值为x。经过我们的计算可以得到游客每年人数应为1431579人，$P_e$为272000000000美元，结合以往的数据来看，这个数据是相对合理的。
 
-居民满意度上，将旅客人数带进拟合方程后可以得到居民满意度为67.18，符合我们的预期范围。
+Regarding resident satisfaction, after inputting the number of tourists into the fitting equation, we obtain a resident satisfaction score of 67.18, which falls within our expected range.
+%居民满意度上，将旅客人数带进拟合方程后可以得到居民满意度为67.18，符合我们的预期范围。
 
-环境质量上，经过我们的ATP法得出$k5 = 0.179$, $k6 = 0.113$, $k7 = 0.108$，将旅游人数和$CO_{2max}$, $C_{waste}$,$C_{water}$, $N_t$带入方程后得出结果为0.4876，符合我们的预期范围。
+Regarding environmental quality, through calculations, we obtained $k_5 = 0.179$, $k_6 = 0.113$, $k_7 = 0.108$. After substituting the number of tourists, $\text{CO}_{2max}$, $C_{waste}$, $C_{water}$, and $N_t$ into the equation, we got a result of 0.4876, which falls within our expected range.
+%环境质量上，通过计算得出$k5 = 0.179$, $k6 = 0.113$, $k7 = 0.108$，将旅游人数和$CO_{2max}$, $C_{waste}$,$C_{water}$, $N_t$带入方程后得出结果为0.4876，符合我们的预期范围。
 
 \subsection{Sensitivity Analysis}
 Since we have used a multi-start optimization strategy, we use \textbf{Sobol Analysis} to simultaneously analyze the local sensitivity and global sensitivity of the input variables $N_t$, $\tau_t$, $k_5$, $k_6$ and $k_7$. The pseudocode is as follows:
@@ -360,7 +363,8 @@ From the figure, it is clear that the number of tourists is the most critical va
 
 \subsection{Model Validation}
 
-在3.1中，我们使用多起点的混合优化策略，计算了我们建立的可持续旅游发展模型，并在3.2中对其进行了敏感度分析。虽然我们的计算结果比较符合实际，但我们仍对其正确性提出了一些质疑。因此，我们又使用了多目标优化策略再次计算了以上模型的最优情况，以验证3.1中多起点的混合优化策略的正确性。我们的优化目标依然是收入最大化、环境影响最小化和社会满意度最大化。在新的多目标优化策略中，我们使用了DEAP（Distributed Evolutionary Algorithms in Python）框架来实现NSGA-II（非支配排序遗传算法II）。然后我们使用帕累托优化，得到该模型下的一系列最优情况，然后根据需求和实际情况，选取最终的结果为 x。这一结果既符合我们的预期，也于3.1中的多起点混合优化策略的结果相互印证。此外，我们同样对多目标优化策略的算法进行了Sobol敏感度分析，得到的结果与3.2中的结果相差无几，这也进一步证明了3.3中的多目标优化策略算法的正确性，以及3.1中多起点的混合优化策略算法的正确性。如图是多目标优化策略算法的执行结果。
+In Section 3.1, we used a multi-starting point hybrid optimization strategy to calculate our established sustainable tourism development model, and conducted sensitivity analysis in Section 3.2. Although our calculation results were relatively consistent with reality, we still raised some doubts about their accuracy. Therefore, we employed a multi-objective optimization strategy to recalculate the optimal conditions for the above model to verify the correctness of the multi-starting point hybrid optimization strategy in Section 3.1. Our optimization objectives remained maximizing income, minimizing environmental impact, and maximizing social satisfaction. In the new multi-objective optimization strategy, we used the DEAP (Distributed Evolutionary Algorithms in Python) framework to implement NSGA-II (Non-dominated Sorting Genetic Algorithm II). We then used Pareto optimization to obtain a series of optimal conditions under this model, and based on requirements and actual situations, selected the final result range between 1,300,000 and 1,450,000. This result both met our expectations and corroborated the results from the multi-starting point hybrid optimization strategy in Section 3.1. Additionally, we also performed Sobol sensitivity analysis on the multi-objective optimization strategy algorithm, obtaining results that were very similar to those in Section 3.2, which further proved the correctness of both the multi-objective optimization strategy algorithm in Section 3.3 and the multi-starting point hybrid optimization strategy algorithm in Section 3.1. The figure shows the execution results of the multi-objective optimization strategy algorithm.
+%在3.1中，我们使用多起点的混合优化策略，计算了我们建立的可持续旅游发展模型，并在3.2中对其进行了敏感度分析。虽然我们的计算结果比较符合实际，但我们仍对其正确性提出了一些质疑。因此，我们又使用了多目标优化策略再次计算了以上模型的最优情况，以验证3.1中多起点的混合优化策略的正确性。我们的优化目标依然是收入最大化、环境影响最小化和社会满意度最大化。在新的多目标优化策略中，我们使用了DEAP（Distributed Evolutionary Algorithms in Python）框架来实现NSGA-II（非支配排序遗传算法II）。然后我们使用帕累托优化，得到该模型下的一系列最优情况，然后根据需求和实际情况，选取最终的结果范围在1300000到1450000之间。这一结果既符合我们的预期，也于3.1中的多起点混合优化策略的结果相互印证。此外，我们同样对多目标优化策略的算法进行了Sobol敏感度分析，得到的结果与3.2中的结果相差无几，这也进一步证明了3.3中的多目标优化策略算法的正确性，以及3.1中多起点的混合优化策略算法的正确性。如图是多目标优化策略算法的执行结果。
 
 \begin{figure}[htbp]
 \centering
