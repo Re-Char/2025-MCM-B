@@ -208,15 +208,15 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 \begin{equation}
 	Societal:\ S_{residents} \geqslant 60
 \end{equation}	
-\subsubsection{多起点的混合优化策略}
-由于我们的模型共有五个决策变量，分别是\(N_t\)，\(\tau_t\)，\(k_5\)，\(k_6\)，\(k_7\)，他们之间相互影响且对目标函数不同程度的影响。为了在每个决策变量在局部达到相对较优的条件下，尽可能使全局目标达到最佳，包括旅游收入最高，环境影响最小和居民满意度最高等等，我们使用多起点的混合优化策略来对目标函数的各个影响因子进行优化，其伪代码如下：
+\subsubsection{Multi-start Optimization Algorithm}
+Since our model has five decision variables, namely \(N_t\), \(\tau_t\), \(k_5\), \(k_6\) and \(k_7\), which interact with each other and have varying degree of influence on the objective function. In order to achieve relatively optimal conditions for each decision variable locally and at the same time strive for the global objective to be optimal, such as maximizing tourism revenue, minimizing environmental impact, and maximizing resident satisfaction, etc., we use a multi-start optimization strategy to optimize the various influencing factors of the objective function. The pseudocode is as follows:
 \begin{algorithm}
 	\caption{Multi-start Optimization Algorithm}
 	\begin{algorithmic}[1]
-		\STATE \textbf{Input:} $n\_starts,\ Nmax,\ objective\_function$
+		\STATE \textbf{Input:} $n\_starts$,\ $Nmax$
 		\STATE \textbf{Output:} $best\_result$
 		\vspace{0.2cm}
-		\STATE /* Initialize variables*/
+		\STATE /* Initialize variables */
 		\STATE $best\_result\leftarrow null$
 		\STATE $best\_objective\leftarrow \infty$
 		\STATE /* Generate starting points for each parameter */
@@ -243,38 +243,55 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 	\end{algorithmic}
 \end{algorithm}
 
-模型的解决方案和输出： 模型通过对多个影响因素进行多起点优化，最终得到最佳优化情况。
+\textbf{The solution and output of the model:} The model maximizes economic, environmental, and social benefits through multi-start optimization of five decision variables. In the initialization phase, the algorithm first sets up an empty optimal solution container and an infinite initial optimal objective value as the benchmark. Then, the algorithm generates multiple sets of different starting points within reasonable value ranges to ensure that the algorithm can explore a larger solution space. During the optimization loop phase, the algorithm performs a complete optimization attempt for each set of starting points. Each attempt uses the \textbf{Sequential Least Squares Quadratic Programming} (SLSQP) method to find the solution that optimizes the objective function, considering all constraints, such as visitor number limits, tax rate range, investment ratio restrictions, etc.). If an optimization attempt is successful and the resulting objective function value is better than the currently recorded optimal value, the optimal solution and objective value are updated. This process repeats until all starting points have been tested, and the globally optimal result is retained.
+
 \subsubsection{计算结果}
 旅游总收入上，根据以往的数据，我们给旅客平均消费值赋值为x。经过我们的计算可以得到游客每年人数应为x人，$P_e$为x，结合以往的数据来看，这个数据是相对合理的。
 
 居民满意度上，将旅客人数带进拟合方程后可以得到居民满意度为x，符合我们的预期范围。
 
 环境质量上，经过我们的ATP法得出$k1 = X$, $k2 = X$, $k3 = X$，将旅游人数和$CO_{2max}$, $C_{waste}$,$C_{water}$, $N_t$带入方程后得出结果为x，符合我们的预期范围。
-\subsection{敏感度分析}
-因为我们使用了混合优化策略，故我们同时分析了输入变量$N_t$, $\tau _t$, $k5$, $k6$, $k7$的局部敏感度和全局敏感性，代码如下：
+
+\subsection{Sensitivity Analysis}
+Since we have used a multi-start optimization strategy, we use \textbf{Sobol Analysis} to simultaneously analyze the local sensitivity and global sensitivity of the input variables $N_t$, $\tau_t$, $k_5$, $k_6$ and $k_7$. The pseudocode is as follows:
 \begin{algorithm}
-	\caption{$Sensitive Analysis$}
+	\caption{Sensitivity Analysis}
 	\begin{algorithmic}[1]
-		\STATE Initialize variables
-		\FOR{each element in the list}
-			\IF{condition is met}
-				\STATE Perform action
-			\ELSE
-				\STATE Perform another action
-			\ENDIF
+		\STATE \textbf{Input:} $n\_samples$
+		\STATE \textbf{Output:} $Si$ (result of Sobol Analysis)
+		\vspace{0.2cm}
+		\STATE /* Define problem structure */
+		\STATE \textbf{Initialize problem dictionary:}
+		\STATE $\quad$number of variables, variable names, variable bounds
+		\STATE /* Generate samples */
+		\STATE $param\_values = saltelli.sample(problem,\ n\_samples)$
+		\STATE /* Evaluate model for all samples */
+		\STATE Initialize empty array $Y$
+		\FOR {each parameter set $X$ in $param\_values$}
+		\STATE Calculate objective function value for $X$
+		\STATE Add result to array $Y$
 		\ENDFOR
-		\STATE Return result
+		\STATE /* Normalize results */
+		\STATE $Y = (Y - minimum\ of\ Y) / (maximum\ of\ Y - minimum\ of\ Y)$
+		\STATE /* Perform Sobol Analysis */
+		\STATE $Si=sobol.analyze(problem,\ Y)$
+		\vspace{0.2cm}
+		\STATE \textbf{Print results}
+		\STATE \textbf{Visualize results}
+		\vspace{0.2cm}
+		\RETURN $Si$
 	\end{algorithmic}
 \end{algorithm}
 
-结果如下图所示:
+The results are shown in the figure below:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{sensitive.png}
 	\caption{Sensitive Analysis}\label{fig:sensitive}
 \end{figure}
 
-通过图片我们不难看出，旅客人数为关键的变量，其在局部和全局中的敏感性分别达到了x和x，远大于其他的输入变量，而这也符合朱诺市作为一个旅游城市收入受旅客人数影响较大的客观事实。
+From the figure, it is clear that the number of tourists is the most critical variable, with its local and global sensitivities reaching $0.877$ and $0.932$, respectively, far greater than the other input variables. This also aligns with the objective fact that, as a tourist city, Juneau's income is heavily influenced by the number of tourists.
+
 \section{Solution to Problem2}
 这里以朱诺市两个景点门登霍尔冰川和赏鲸雨林为例来具体展示分流模型是如何运作的。
 \subsection{生成不同景点的目标函数}
