@@ -270,11 +270,11 @@ Since our model has five decision variables, namely \(N_t\), \(\tau_t\), \(k_5\)
 \textbf{The solution and output of the model:} The model maximizes economic, environmental, and social benefits through multi-start optimization of five decision variables. In the initialization phase, the algorithm first sets up an empty optimal solution container and an infinite initial optimal objective value as the benchmark. Then, the algorithm generates multiple sets of different starting points within reasonable value ranges to ensure that the algorithm can explore a larger solution space. During the optimization loop phase, the algorithm performs a complete optimization attempt for each set of starting points. Each attempt uses the \textbf{Sequential Least Squares Quadratic Programming} (SLSQP) method to find the solution that optimizes the objective function, considering all constraints, such as visitor number limits, tax rate range, investment ratio restrictions, etc.). If an optimization attempt is successful and the resulting objective function value is better than the currently recorded optimal value, the optimal solution and objective value are updated. This process repeats until all starting points have been tested, and the globally optimal result is retained.
 
 \subsubsection{计算结果}
-旅游总收入上，根据以往的数据，我们给旅客平均消费值赋值为x。经过我们的计算可以得到游客每年人数应为x人，$P_e$为x，结合以往的数据来看，这个数据是相对合理的。
+旅游总收入上，根据以往的数据，我们给旅客平均消费值赋值为x。经过我们的计算可以得到游客每年人数应为1431579人，$P_e$为272000000000美元，结合以往的数据来看，这个数据是相对合理的。
 
-居民满意度上，将旅客人数带进拟合方程后可以得到居民满意度为x，符合我们的预期范围。
+居民满意度上，将旅客人数带进拟合方程后可以得到居民满意度为67.18，符合我们的预期范围。
 
-环境质量上，经过我们的ATP法得出$k1 = X$, $k2 = X$, $k3 = X$，将旅游人数和$CO_{2max}$, $C_{waste}$,$C_{water}$, $N_t$带入方程后得出结果为x，符合我们的预期范围。
+环境质量上，经过我们的ATP法得出$k5 = 0.179$, $k6 = 0.113$, $k7 = 0.108$，将旅游人数和$CO_{2max}$, $C_{waste}$,$C_{water}$, $N_t$带入方程后得出结果为0.4876，符合我们的预期范围。
 
 \subsection{Sensitivity Analysis}
 Since we have used a multi-start optimization strategy, we use \textbf{Sobol Analysis} to simultaneously analyze the local sensitivity and global sensitivity of the input variables $N_t$, $\tau_t$, $k_5$, $k_6$ and $k_7$. The pseudocode is as follows:
@@ -389,7 +389,7 @@ $C_{i-j} = C_{pi-j}*\Delta N_{i-j}$(总成本，等于将一个人分流走的�
 	\caption{The Relationship between Tourism Revenue and Number of Visitors in Jiuzhaigou Scenic Area}\label{fig:JiuZhaiGou}
 \end{figure}
 \subsection{结果展示}
-根据我们模型跑出来的结果显示，xxx。这些数据和往年相比具有合理性，符合实际的基本预期。
+根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
 
 % 以下为信件/备忘录部分，不需要可自行去掉
 % 如有需要可将整个 letter 环境移动到文章开头或中间
