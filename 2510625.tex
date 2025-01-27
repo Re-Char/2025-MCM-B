@@ -401,18 +401,22 @@ In Section 3.1, we used a multi-starting point hybrid optimization strategy to c
 \end{figure}
 
 \section{Solution to Problem2}
-为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
-\subsection{数据收集}
-因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
+To demonstrate how the model adapts to another destination affected by overtourism, after searching and collecting data, we decided to analyze the Jiuzhaigou Scenic Area in Sichuan Province, China.
+%为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
+\subsection{Data Collection}
+Since each location has significantly different infrastructure pressures, per capita consumption, and other factors, we need to conduct data research and modify the corresponding parameters before we can use the current model for predictions.
+%因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
 
-通过对官网数据的收集\cite{10}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
+Based on data collected from official websites\cite{10}, we can determine the relationship between Jiuzhaigou County's annual income and the Jiuzhaigou Scenic Area. However, due to the lack of satisfaction survey data and other related information on official websites, we made simple estimates of these values based on general public evaluations. By modifying relevant constraints such as per capita water consumption, per capita waste generation, carrying capacity for water resources and waste treatment, and average tourist spending levels, we can adapt the model to Jiuzhaigou's specific circumstances.
+%通过对官网数据的收集\cite{10}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{JiuZhaiGou.jpg}
 	\caption{The Relationship between Tourism Revenue and Number of Visitors in Jiuzhaigou Scenic Area}\label{fig:JiuZhaiGou}
 \end{figure}
-\subsection{结果展示}
-根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
+\subsection{Results}
+According to the optimal results from our model, $N_t$ is 3,747,368, $P_e$ is 2,248,421,052.70 yuan, $S_{residents}$ is 65.10, $k_5$ is 0.169, $k_6$ is 0.123, and $k_7$ is 0.108. These results are relatively reasonable when compared with data from previous years.
+%根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
 
 \section{Solution to Problem3}
 \subsection{Sustainable Development Models for Different Tourist Attractions}
