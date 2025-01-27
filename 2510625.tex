@@ -142,47 +142,61 @@ Considering the needs of sustainable tourism development, we evaluate the compre
 Our objective function should be influenced by income, social satisfaction and environmental quality. We aim to maximize economic effects and social satisfaction while minimizing environmental pollution. Therefore, the economic index $R$ and social satisfaction index $S$ have positive effects on the objective function, while the environmental pollution index has a negative inhibitory effect on the objective function. Finally, we obtain:
 %我们的目标函数应受收入，社会满意度和环境质量三者影响，我们希望经济效应最大化，社会满意度最大化以及环境污染最小化。故而，经济指数R与社会满意度指数S对目标函数起到正向的影响作用，而环境污染指数对目标函数有负向的抑制作用。最终我们得到：
 \begin{equation}
-	Objective\ function:Z=R+S-E
+	\text{Objective\ Function}:Z=R+S-E
 \end{equation}
 
-我们主要通过游客在旅游时的总消费来衡量旅游收入。旅游总收入主要受到人均消费金额与游客总人数的影响。为了简化模型，我们认为在短期内人均消费不会发生很大波动，是定值。故而旅游的总收入应当和旅客的人数成简单的线性关系，因此我们可以很简单的得到公式2
+We mainly measure tourism income through the total expenditure of tourists during their travels. Total tourism revenue is mainly affected by per capita consumption and the total number of tourists. To simplify the model, we assume that per capita consumption will not fluctuate significantly in the short term and is a constant value. Therefore, the total tourism revenue should have a simple linear relationship with the number of tourists, so we can easily obtain Function 2.
+%我们主要通过游客在旅游时的总消费来衡量旅游收入。旅游总收入主要受到人均消费金额与游客总人数的影响。为了简化模型，我们认为在短期内人均消费不会发生很大波动，是定值。故而旅游的总收入应当和旅客的人数成简单的线性关系，因此我们可以很简单的得到公式2
 \begin{equation}
     R_{e}(N_{t},P_{t}) = P_{t}N_{t}
 \end{equation}
 
-需要注意的是，由于旅游的大部分税收，如酒店税与酒精税均是隐形税收，直接在消费中体现，故而我们认为政府从旅游业中获取的税收是包含在计算出的收入之中的，按照总税收的比例从收入中进行折算获得。
+It should be noted that since most tourism taxes, such as hotel taxes and alcohol taxes, are hidden taxes that are directly reflected in consumption, we consider that the tax revenue obtained by the government from the tourism industry is included in the calculated revenue, which is obtained by converting from the revenue according to the proportion of total tax revenue.
+%需要注意的是，由于旅游的大部分税收，如酒店税与酒精税均是隐形税收，直接在消费中体现，故而我们认为政府从旅游业中获取的税收是包含在计算出的收入之中的，按照总税收的比例从收入中进行折算获得。
 
-同时，为了实现在目标函数中与环境和社会指数进行数学运算获得目标函数进行收益评估，我们对人均收入进行了归一化处理，消除量纲的差异以便于获得目标函数。
+Meanwhile, in order to perform mathematical operations with environmental and social indices in the objective function for benefit evaluation, we normalized the per capita income to eliminate dimensional differences to obtain the objective function.
+%同时，为了实现在目标函数中与环境和社会指数进行数学运算获得目标函数进行收益评估，我们对人均收入进行了归一化处理，消除量纲的差异以便于获得目标函数。
 \begin{equation}
     R = R_{e}/R_{estandard}
 \end{equation}
-其中，$R_{estandard}$是设置的收入的理论最大值。我们认为，由于对环境保护等的需要，较短期内经济不会过大增长，选取略高于最近一年的年收入最高值的常数，作为收入最大值进行归一化处理获得经济指数。
+Where $R_{estandard}$ is the theoretical maximum value set for income. We believe that due to the need for environmental protection and other factors, the economy will not grow too much in the short term. Therefore, we select a constant slightly higher than the highest annual income in the most recent year as the maximum income to perform normalization and obtain the economic index.
+%其中，$R_{estandard}$是设置的收入的理论最大值。我们认为，由于对环境保护等的需要，较短期内经济不会过大增长，选取略高于最近一年的年收入最高值的常数，作为收入最大值进行归一化处理获得经济指数。
 
-环境质量方面，我们主要考虑三个因素的影响：二氧化碳排放量，水的消耗量以及废物的产生量，而这三个因素都与游客人数密切相关。
-对于碳排放因素，我们主要考虑朱诺市由于过度旅游造成的冰川融化问题。根据NASA的数据，门登霍尔冰川在1984-2023年40年间融化了约16公里，平均每年融化40m，需要控制其融化的速度。我们可以使用度日因子法估计冰川的融化速度：
+In terms of environmental quality, we mainly consider the impact of three factors: carbon dioxide emissions, water consumption, and waste generation, all of which are closely related to the number of tourists.
+%环境质量方面，我们主要考虑三个因素的影响：二氧化碳排放量，水的消耗量以及废物的产生量，而这三个因素都与游客人数密切相关。
+For the carbon emission factor, we mainly consider the glacier melting problem in Juneau caused by excessive tourism. According to NASA data, the Mendenhall Glacier melted approximately 1.6 kilometers between 1984-2023 over 40 years, with an average melting rate of 40 meters per year, and its melting speed needs to be controlled. We can use the degree-day factor method to estimate the glacier melting rate:
+%对于碳排放因素，我们主要考虑朱诺市由于过度旅游造成的冰川融化问题。根据NASA的数据，门登霍尔冰川在1984-2023年40年间融化了约16公里，平均每年融化40m，需要控制其融化的速度。我们可以使用度日因子法估计冰川的融化速度：
 \begin{equation}
     M=DDF\times DDT
 \end{equation}
-其中，DDF是度日因子，变化小接近常量，而DDT是正积温，受到温度的直接影响。想要控制冰川融化的速度，关键在于控制温度的升高，而碳排放是影响温度升高的主要因素。根据《巴黎协定》的规定，1850-2100年间年平均气温升高尽量控制在1.5度-2.0度，我们以1.5度为温度升高的最大限度计算最大碳排放量。
+Where DDF is the degree-day factor, which varies little and is close to constant, and DDT is the positive temperature sum, which is directly affected by temperature. To control the rate of glacier melting, the key is to control temperature rise, and carbon emissions are the main factor affecting temperature rise. According to the \textit{Paris Agreement}, the average annual temperature rise between 1850-2100 should be controlled between 1.5-2.0 degrees, and we use 1.5 degrees as the maximum temperature rise to calculate the maximum carbon emissions.
+%其中，DDF是度日因子，变化小接近常量，而DDT是正积温，受到温度的直接影响。想要控制冰川融化的速度，关键在于控制温度的升高，而碳排放是影响温度升高的主要因素。根据《巴黎协定》的规定，1850-2100年间年平均气温升高尽量控制在1.5度-2.0度，我们以1.5度为温度升高的最大限度计算最大碳排放量。
 \begin{equation}
     \Delta T=\lambda\times \ln(CO_{2}/CO_{2pre-industrial})
 \end{equation}
-根据该公式计算出全球平均二氧化碳浓度增量，乘上大气质量得到全球250年间的二氧化碳排放总量，通过朱诺市的人口占比，估算出朱诺市的年平均排放量。旅游业是朱诺市占比最大的产业，按照总量的百分之60计算排放总量。同时我们根据朱诺市的森林湿地面积与平均碳吸收量，将两者相加得到最大碳排放量。
-而对于游客的人均碳足迹，我们考虑到游客主要以邮轮方式出行，有较高的碳排放量，结合邮轮出行平均碳排放量和游客岸上行动的平均碳排放量对人均碳排放量进行了估计。
-通过朱诺市对后两个因素的处理能力和游客与居民的人均消耗/产生量，可以计算出朱诺市供水系统和废物处理系统可以每年承载的游客数$C_{waste}$, $C_{water}$，我们将实际的人数和承载人数相比进行归一化处理来衡量基建体系压力。最后结合各因子的重要性因素得到了公式3：
+According to this formula, we calculate the global average increase in carbon dioxide concentration, multiply it by atmospheric mass to obtain the total global carbon dioxide emissions over 250 years, and estimate Juneau's average annual emissions through its population proportion. Tourism is Juneau's largest industry, accounting for 60 percent of total emissions. Meanwhile, we calculate the maximum carbon emissions by adding the forest wetland area and average carbon absorption of Juneau.
+%根据该公式计算出全球平均二氧化碳浓度增量，乘上大气质量得到全球250年间的二氧化碳排放总量，通过朱诺市的人口占比，估算出朱诺市的年平均排放量。旅游业是朱诺市占比最大的产业，按照总量的百分之60计算排放总量。同时我们根据朱诺市的森林湿地面积与平均碳吸收量，将两者相加得到最大碳排放量。
+As for tourists' per capita carbon footprint, we considered that tourists mainly travel by cruise ships, which have relatively high carbon emissions, and estimated per capita carbon emissions by combining the average carbon emissions of cruise travel and tourists' onshore activities.
+%而对于游客的人均碳足迹，我们考虑到游客主要以邮轮方式出行，有较高的碳排放量，结合邮轮出行平均碳排放量和游客岸上行动的平均碳排放量对人均碳排放量进行了估计。
+Through Juneau's processing capacity for the latter two factors and the per capita consumption/generation of tourists and residents, we can calculate the number of tourists that Juneau's water supply system and waste treatment system can accommodate annually, $C_{waste}$ and $C_{water}$. We normalize the actual number of people compared to the carrying capacity to measure the pressure on the infrastructure system. Finally, combining the importance factors of each factor, we obtained Function 3:
+%通过朱诺市对后两个因素的处理能力和游客与居民的人均消耗/产生量，可以计算出朱诺市供水系统和废物处理系统可以每年承载的游客数$C_{waste}$, $C_{water}$，我们将实际的人数和承载人数相比进行归一化处理来衡量基建体系压力。最后结合各因子的重要性因素得到了公式3：
 \begin{equation}
 	E=k_{1}\frac{CO_{2p}N_{t}}{CO_{2max}}+k_{2}\frac{N_{t}}{C_{waste}}+k_{3}\frac{N_{t}}{C_{water}}
 \end{equation}
-具体的，我们认为朱诺市目前面临较为严重的冰川融化问题，需要控制碳排放量，同时，其废物处理系统的承载量相比供水系统更小，人数的增长对其的压力更大，故而我们认为k1>k2>k3。
+Specifically, we believe that Juneau currently faces a relatively serious glacier melting problem and needs to control carbon emissions. Additionally, its waste treatment system has a smaller capacity compared to its water supply system, and population growth puts greater pressure on it. Therefore, we consider $k_1>k_2>k_3$.
+%具体的，我们认为朱诺市目前面临较为严重的冰川融化问题，需要控制碳排放量，同时，其废物处理系统的承载量相比供水系统更小，人数的增长对其的压力更大，故而我们认为k1>k2>k3。
 
-社会满意度方面，由于游客满意度在较长时间跨度的统计数据中均无明显变化，总体满意度停留在百分之99左右，我们认为游客满意度在税收等合理的情况下不会发生明显变化，故而主要考虑居民满意度。
-我们主要收集了朱诺市1998，2002，2006，2022，2023五年的社会满意度调查结果\cite{4}，摒除其无影响和不知道的无效评价，剩下的评价依据李斯特量表分成了五级，我们按照100分制对数据的评分进行了扩大处理。同时我们查找了这五年的游客人数\cite{5}来和社会满意度进行了数据拟合并得到了如下结果：
+Regarding social satisfaction, since tourist satisfaction has shown no significant changes in statistical data over a long time span, with overall satisfaction remaining around 99\%, we believe that tourist satisfaction will not change significantly when factors like taxation are reasonable. Therefore, we mainly consider resident satisfaction.
+We primarily collected social satisfaction survey results from Juneau for five years: 1998, 2002, 2006, 2022, and 2023\cite{4}. After excluding invalid evaluations marked as "no impact" and "don't know," the remaining evaluations were categorized into five levels according to the Likert scale. We converted the data scoring to a 100-point scale. Additionally, we looked up the tourist numbers for these five years\cite{5} and performed data fitting with social satisfaction, obtaining the following results:
+%社会满意度方面，由于游客满意度在较长时间跨度的统计数据中均无明显变化，总体满意度停留在百分之99左右，我们认为游客满意度在税收等合理的情况下不会发生明显变化，故而主要考虑居民满意度。
+%我们主要收集了朱诺市1998，2002，2006，2022，2023五年的社会满意度调查结果\cite{4}，摒除其无影响和不知道的无效评价，剩下的评价依据李斯特量表分成了五级，我们按照100分制对数据的评分进行了扩大处理。同时我们查找了这五年的游客人数\cite{5}来和社会满意度进行了数据拟合并得到了如下结果：
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{satisfaction.png}
 	\caption{Nonlinear Fitting between $N_t$ and $S_{residents}$}\label{fig:satisfaction}
 \end{figure}
-其中，$a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$。最后，为了消除量纲带来的影响，我们给满意度除以了满意度的最大值100分。得到的公式4如下：
+Where $a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$. Finally, to eliminate the impact of dimensionality, we divided the satisfaction score by the maximum satisfaction value of 100 points. The resulting Function 4 is as follows:
+%其中，$a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$。最后，为了消除量纲带来的影响，我们给满意度除以了满意度的最大值100分。得到的公式4如下：
 \begin{equation}
 	\begin{cases}
 		S_{residents}=a_{1}N_{t}^2+a_{2}N_{t} + b_{1} \\
@@ -190,7 +204,8 @@ Our objective function should be influenced by income, social satisfaction and e
 	\end{cases}
 \end{equation}
 
-额外投入方面，我们考虑到了政府对于额外税收的分配计划对系统的反馈作用，政府可以向供水系统、废物处理系统以及环境保护方面进行投入，如进行基建建设或者增强植树造林等，以提高基建的最大承载量和最大的碳排放量，进而获取更高的收益。我们认为政府可以调整投入在政府实际分配中的比值，以获取最大的收益。得到公式5如下：
+In terms of additional investment, we considered the feedback effect of the government's tax allocation plan on the system. The government can invest in water supply systems, waste treatment systems, and environmental protection, such as infrastructure construction or increasing afforestation efforts, to improve the maximum carrying capacity of infrastructure and maximum carbon emissions, thereby obtaining higher returns. We believe that the government can adjust the proportion of investment in actual government allocation to maximize returns. The resulting Function 5 is as follows:
+%额外投入方面，我们考虑到了政府对于额外税收的分配计划对系统的反馈作用，政府可以向供水系统、废物处理系统以及环境保护方面进行投入，如进行基建建设或者增强植树造林等，以提高基建的最大承载量和最大的碳排放量，进而获取更高的收益。我们认为政府可以调整投入在政府实际分配中的比值，以获取最大的收益。得到公式5如下：
 \begin{equation}
 	\begin{cases}
 		P_{waste} = k_5\tau_tR_e\\
@@ -199,7 +214,8 @@ Our objective function should be influenced by income, social satisfaction and e
 		k_5+k_6+k_7 \leqslant 0.4
 	\end{cases}
 \end{equation}
-为了简化模型，我们认为投入能够直接带来回报，并且支出以一定比例直接增加基建承载量或者最大碳排放量，以便于模型做出决策。
+To simplify the model, we assume that investment can directly generate returns, and expenditures directly increase infrastructure carrying capacity or maximum carbon emissions at a certain ratio, in order to facilitate model decision-making.
+%为了简化模型，我们认为投入能够直接带来回报，并且支出以一定比例直接增加基建承载量或者最大碳排放量，以便于模型做出决策。
 \begin{equation}
 	\begin{cases}
 		C_{waste}+=\alpha_1P_{waste} \\
@@ -207,21 +223,25 @@ Our objective function should be influenced by income, social satisfaction and e
 		CO_{2max}+=\alpha_3P_e \\
 	\end{cases}
 	\end{equation}
-\subsubsection{找到约束条件}
-在经济方面，为了限制税率的值以保证假设准确，我们设置了一个限制，认为总体税率应小于等于8\%。因此有公式7：
+
+\subsubsection{Find the constraints}
+In terms of economics, to limit the tax rate value and ensure the accuracy of assumptions, we set a restriction that the overall tax rate should be less than or equal to 8\%. Therefore, we have Formula 7:
+%在经济方面，为了限制税率的值以保证假设准确，我们设置了一个限制，认为总体税率应小于等于8\%。因此有公式7：
 \begin{equation}
-	Financial:\tau_{t}\leqslant 8\% \\
+	\text{Financial}:\tau_{t}\leqslant 8\% \\
 \end{equation}
 
-游客人数方面，我们依据朱诺市的政策\cite{6}得出了每天的游客的人数限制。公式8如下:
+Regarding tourist numbers, based on Juneau's policy\cite{6}, we derived the daily tourist number limit. Function 8 is as follows:
+%游客人数方面，我们依据朱诺市的政策\cite{6}得出了每天的游客的人数限制。公式8如下:
 \begin{equation}
-	Tourism:
+	\text{Touristic}:
 		0\leqslant N_{t}\leqslant N_{tmax}\\
 \end{equation}
 
-环境方面，首先，我们限定了二氧化碳的最大排放量，而在水资源最大承载量和废物处理最大承载量上面，我们考虑到游客人数的季节性波动会导致旺季基建压力的上升，根据数据获得旺季每天最多游客人数占全年总游客人数的比例，考虑到基建能力一年内的的承载弹性，升大设置1.2倍日平均承载量作为上限来限制最大的日游客人数。公式9如下：
+Regarding environmental aspects, first, we set a limit on the maximum carbon dioxide emissions. For the maximum carrying capacity of water resources and waste treatment, we considered that seasonal fluctuations in tourist numbers would lead to increased infrastructure pressure during peak seasons. Based on the data, we obtained the ratio of maximum daily tourist numbers during peak season to total annual tourist numbers. Taking into account the elasticity of infrastructure capacity within a year, we set 1.2 times the daily average carrying capacity as an upper limit to restrict the maximum daily number of tourists. Function 9 is as follows:
+%环境方面，首先，我们限定了二氧化碳的最大排放量，而在水资源最大承载量和废物处理最大承载量上面，我们考虑到游客人数的季节性波动会导致旺季基建压力的上升，根据数据获得旺季每天最多游客人数占全年总游客人数的比例，考虑到基建能力一年内的的承载弹性，升大设置1.2倍日平均承载量作为上限来限制最大的日游客人数。公式9如下：
 \begin{equation}
-	Environmental:
+	\text{Environmental}:
 	\begin{cases}
 		N_{t}\cdot CO_{2p}\leqslant CO_{2max} \\
 		0.012N_t\leqslant \frac{1.2}{365}C_{waste} \\
@@ -229,10 +249,12 @@ Our objective function should be influenced by income, social satisfaction and e
 	\end{cases}
 \end{equation}
 
-社会满意度方面，经过合适的量化后，我们将60作为及格线。故公式10如下：
+Regarding social satisfaction, after appropriate quantification, we set 60 as the passing threshold. Therefore, Function 10 is as follows:
+%社会满意度方面，经过合适的量化后，我们将60作为及格线。故公式10如下：
 \begin{equation}
-	Societal:\ S_{residents} \geqslant 60
+	\text{Social}:\ S_{residents} \geqslant 60
 \end{equation}	
+
 \subsubsection{Multi-start Optimization Algorithm}
 Since our model has five decision variables, namely \(N_t\), \(\tau_t\), \(k_5\), \(k_6\) and \(k_7\), which interact with each other and have varying degree of influence on the objective function. In order to achieve relatively optimal conditions for each decision variable locally and at the same time strive for the global objective to be optimal, such as maximizing tourism revenue, minimizing environmental impact, and maximizing resident satisfaction, etc., we use a multi-start optimization strategy to optimize the various influencing factors of the objective function. The pseudocode is as follows:
 \begin{algorithm}
