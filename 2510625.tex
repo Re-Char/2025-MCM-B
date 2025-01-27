@@ -63,8 +63,8 @@ Here is the problem background. Three major problems are discussed in this paper
 \subsection{Problem Restatement and Analysis}
 \begin{itemize}
     \item \textbf{Problem1: }Develop a model for a sustainable tourism industry that should meet the maximization of revenue, the maximization of environmental quality, and the maximization of social satisfaction, and conduct a sensitivity analysis on it.
-    \item \textbf{Problem2: }Develop a model to address the issue of visitor diversion, which is also a measure to increase revenue and reduce regional pressure.
-    \item \textbf{Problem3: }Demonstrate how the model can be adapted to another tourist destination affected by overtourism, by obtaining relevant information from another city and analyzing it with the model.
+    \item \textbf{Problem2: }Demonstrate how the model can be adapted to another tourist destination affected by overtourism, by obtaining relevant information from another city and analyzing it with the model.
+    \item \textbf{Problem3: }Develop a model to address the issue of visitor diversion, which is also a measure to increase revenue and reduce regional pressure.
     \item \textbf{An article: }Write a memo to the Juneau Convention and Visitors Bureau, outlining the forecast of the results, the impact of various measures, and suggestions on how to optimize the results.
 \end{itemize}
 
@@ -360,6 +360,19 @@ From the figure, it is clear that the number of tourists is the most critical va
 \subsection{结果展示}
 根据我们模型跑出来的结果显示，xxx。这些数据和往年相比具有合理性，符合实际的基本预期。
 
+\section{Solution to Problem2}
+为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
+\subsection{数据收集}
+因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
+
+通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{JiuZhaiGou.jpg}
+	\caption{The Relationship between Tourism Revenue and Number of Visitors in Jiuzhaigou Scenic Area}\label{fig:JiuZhaiGou}
+\end{figure}
+\subsection{结果展示}
+根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
 
 \section{Solution to Problem3}
 \subsection{生成不同景点的目标函数}
@@ -393,19 +406,6 @@ $C_{i-j} = C_{pi-j}*\Delta N_{i-j}$(总成本，等于将一个人分流走的�
 \end{figure}
 解释一下这个图，我看不太懂QAQ
 
-\section{Solution to Problem3}
-为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
-\subsection{数据收集}
-因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
-
-通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.8\textwidth]{JiuZhaiGou.jpg}
-	\caption{The Relationship between Tourism Revenue and Number of Visitors in Jiuzhaigou Scenic Area}\label{fig:JiuZhaiGou}
-\end{figure}
-\subsection{结果展示}
-根据我们模型跑出来的最佳结果显示，$N_t$为3747368，$P_e$为2248421052.70元，$S_{residents}$为65.10，$k5$为0.169，$k6$为0.123，$k7$为0.108。这些结果与往年数据相比较具有合理性。
 
 % 以下为信件/备忘录部分，不需要可自行去掉
 % 如有需要可将整个 letter 环境移动到文章开头或中间
