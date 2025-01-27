@@ -190,27 +190,41 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 	Societal:\ S_{residents} \geqslant 60
 \end{equation}	
 \subsubsection{多起点的混合优化策略}
-为了兼顾多个因素对目标函数的影响，包括旅游收入，环境质量和居民满意度。而这几个变量又被其他因素所影响，包括基建投入比，游客人数，税率等，我们使用了多起点的混合优化策略算法来对目标函数的影响因子进行同时的优化，伪代码如下：
+由于我们的模型共有五个决策变量，分别是\(N_t\)，\(\tau_t\)，\(k_5\)，\(k_6\)，\(k_7\)，他们之间相互影响且对目标函数不同程度的影响。为了在每个决策变量在局部达到相对较优的条件下，尽可能使全局目标达到最佳，包括旅游收入最高，环境影响最小和居民满意度最高等等，我们使用多起点的混合优化策略来对目标函数的各个影响因子进行优化，其伪代码如下：
 \begin{algorithm}
-	\caption{多起点的混合优化策略}
+	\caption{Multi-start Optimization Algorithm}
 	\begin{algorithmic}[1]
-		\STATE Initialize variables
-		\FOR{each element in the list}
-			\IF{condition is met}
-				\STATE Perform action
-			\ELSE
-				\STATE Perform another action
-			\ENDIF
+		\STATE \textbf{Input:} $n\_starts,\ Nmax,\ objective\_function$
+		\STATE \textbf{Output:} $best\_result$
+		\vspace{0.2cm}
+		\STATE /* Initialize variables*/
+		\STATE $best\_result\leftarrow null$
+		\STATE $best\_objective\leftarrow \infty$
+		\STATE /* Generate starting points for each parameter */
+		\STATE $Nt\_starts\leftarrow linspace(100000,\,0.8\times Nmax,\,n\_starts)$
+		\STATE $\tau\_starts\leftarrow linspace(0.02,\,0.07,\,n\_starts)$
+		\STATE $k\_starts\leftarrow linspace(0.05,\,0.15,\,n\_starts)$
+		\vspace{0.2cm}
+		\STATE \textbf{Define optimization bounds}
+		\vspace{0.2cm}
+		\STATE /* Perform optimization from multiple starting points */
+		\FOR{$i\leftarrow 0$ \TO $n\_starts-1$}
+		\STATE /* Construct initial point */
+		\STATE $x0\leftarrow [Nt\_starts[i],\ \tau\_starts[i],\ k\_starts[i],\ k\_starts[i]]$
+		\STATE /* Minimize objective function */
+		\STATE $result\leftarrow \textbf{minimize\_function}$
+		\STATE /* Update best result if better solution found */
+		\IF{$result.success$ \AND $result.objective\ <\ best\_objective$}
+		\STATE $best\_objective\leftarrow result.objective$
+		\STATE $best\_result\leftarrow deepcopy(result)$
+		\ENDIF
 		\ENDFOR
-		\STATE Return result
+		\vspace{0.2cm}
+		\RETURN $best\_result$
 	\end{algorithmic}
 \end{algorithm}
 
-要输入的参数包括：
-
-模型中的参数包括：
-
-模型的解决方案和输出：
+模型的解决方案和输出： 模型通过对多个影响因素进行多起点优化，最终得到最佳优化情况。
 \subsubsection{计算结果}
 $CO_{2max}$的计算过程，$C_{waste}$和$C_{water}$的计算过程。
 
