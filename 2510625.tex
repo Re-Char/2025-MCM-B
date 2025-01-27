@@ -88,16 +88,17 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 	\toprule
 		Symbol & Definition \\
 	\midrule
+		\(R\) & 经济发展指数 \\
 	    \(R_{e}\) & Total tourism income \\
 		\(N_{t}\) & Number of tourists \\
-		\(N_{tmax}\) & Maximum number of tourists allowed per day \\
+		\(N_{tmax}\) & Maximum number of tourists allowed per year \\
 		\(\tau_{t}\) & Tax rate \\
 		\(P_{t}\) & Average spending per tourist \\
-		\(E\) & Environmental quality index \\
+		\(E\) & 环境污染指数 \\
+		\(CO_{2max}\) & 所允许的最大年 \(CO_{2}\) 排放量 \\
 		\(CO_{2p}\) & Carbon emissions per person \\
-		\(C_{base}\) & Base carbon emission treatment capacity \\
-		\(C_{waste}\) & The amount of basic waste that the city can handle \\
-		\(C_{water}\) & The basic amount of water that the city can provide \\
+		\(C_{waste}\) & 城市的废物处理系统能够承载的年游客人数 \\
+		\(C_{water}\) & 城市的饮用水供应系统与水污染处理系统能够承载的年游客人数 \\
 		\(S_{residents}\) & Residential satisfaction \\
 		\(S\) & Social satisfaction \\
 		\(P_{waste}\) & Cities' investment in waste management \\
@@ -112,45 +113,59 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 \section{Solution to Problem1}
 \subsection{建立一个可持续旅游发展的模型}
 \subsubsection{找到状态变量之间的关系}
-我们的目标函数应受收入，社会满意度和环境质量三者影响，若收入增加，则目标函数也应该增加，社会满意度同理，而环境质量越大负面影响也越大所以目标函数应减小，因此我们可以得到：
+考虑到可持续旅游发展的需要，我们从环境、经济与社会三个角度对朱诺市的旅游业综合收益进行评估。并设置环境污染指数E、经济指数R、与社会满意度指数S来进行评估。
+
+我们的目标函数应受收入，社会满意度和环境质量三者影响，我们希望经济效应最大化，社会满意度最大化以及环境污染最小化。故而，经济指数R与社会满意度指数S对目标函数起到正向的影响作用，而环境污染指数对目标函数有负向的抑制作用。最终我们得到：
 \begin{equation}
-	Target\; equation:Z=R_e+S-E
+	Target\; equation:Z=R+S-E
 \end{equation}
 
-旅游的总收入应当和旅客的人数成简单的线性关系，因此我们可以很简单的得到公式2
+我们主要通过游客在旅游时的总消费来衡量旅游收入。旅游总收入主要受到人均消费金额与游客总人数的影响。为了简化模型，我们认为在短期内人均消费不会发生很大波动，是定值。故而旅游的总收入应当和旅客的人数成简单的线性关系，因此我们可以很简单的得到公式2
 \begin{equation}
     R_{e}(N_{t},P_{t}) = P_{t}N_{t}
 \end{equation}
 
-环境质量方面，主要考虑三个因素的影响：二氧化碳排放量，水的消耗量以及废物的产生量，而这三个因素都与游客人数密切相关。通过朱诺市的对这三个因子的处理能力和人均消耗/产生量，可以计算出朱诺市可以承载的人数$C_{base}$, $C_{waste}$, $C_{water}$，我们将实际的人数和承载人数相比，通过比例衡量体系压力。最后使用Analytic Hierarchy Process(ATP)方法结合各因子的重要性因素得到了公式3：
-\begin{equation}
-	E=k_{1}(CO_{2p}N_{t}-C_{base})+k_{2}\frac{N_{t}}{C_{waste}}+k_{3}\frac{N_{t}}{C_{water}}
-\end{equation}
+需要注意的是，由于旅游的大部分税收，如酒店税与酒精税均是隐形税收，直接在消费中体现，故而我们认为政府从旅游业中获取的税收是包含在计算出的收入之中的，按照总税收的比例从收入中进行折算获得。
 
-社会满意度方面，我们收集了朱诺市1998，2002，2006，2022，2023五年的社会满意度调查\cite{4}，并摒除其无影响和不知道的无效评价，将剩下的评价依据李斯特量表分成了五级，并进行了量化以使结果保持在1以内。同时我们查找了这五年的游客人数\cite{5}来和社会满意度进行了数据拟合并得到了如下结果：
+同时，为了实现在目标函数中与环境和社会指数进行数学运算获得目标函数进行收益评估，我们对人均收入进行了归一化处理，消除量纲的差异以便于获得目标函数。
+\begin{equation}
+    R = R_{e}/R_{estandard}
+\end{equation}
+其中，$R_{estandard}$是设置的收入的理论最大值。我们认为，由于对环境保护等的需要，较短期内经济不会过大增长，选取略高于最近一年的年收入最高值的常数，作为收入最大值进行归一化处理获得经济指数。
+
+环境质量方面，我们主要考虑三个因素的影响：二氧化碳排放量，水的消耗量以及废物的产生量，而这三个因素都与游客人数密切相关。
+对于碳排放因素，我们主要考虑朱诺市由于过度旅游造成的冰川融化问题。根据NASA的数据，门登霍尔冰川在1984-2023年40年间融化了约16公里，平均每年融化40m，需要控制其融化的速度。我们可以使用度日因子法估计冰川的融化速度：
+\begin{equation}
+    M=DDF*DDT
+\end{equation}
+其中，DDF是度日因子，变化小接近常量，而DDT是正积温，受到温度的直接影响。想要控制冰川融化的速度，关键在于控制温度的升高，而碳排放是影响温度升高的主要因素。根据《巴黎协定》的规定，1850-2100年间年平均气温升高尽量控制在1.5度-2.0度，我们以1.5度为温度升高的最大限度计算最大碳排放量。
+\begin{equation}
+    deltaT=numda*ln(CO_{2}/CO_{2pre-industrial})
+\end{equation}
+根据该公式计算出全球平均二氧化碳浓度增量，乘上大气质量得到全球250年间的二氧化碳排放总量，通过朱诺市的人口占比，估算出朱诺市的年平均排放量。旅游业是朱诺市占比最大的产业，按照总量的百分之60计算排放总量。同时我们根据朱诺市的森林湿地面积与平均碳吸收量，将两者相加得到最大碳排放量。
+而对于游客的人均碳足迹，我们考虑到游客主要以邮轮方式出行，有较高的碳排放量，结合邮轮出行平均碳排放量和游客岸上行动的平均碳排放量对人均碳排放量进行了估计。
+通过朱诺市对后两个因素的处理能力和游客与居民的人均消耗/产生量，可以计算出朱诺市供水系统和废物处理系统可以每年承载的游客数$C_{waste}$, $C_{water}$，我们将实际的人数和承载人数相比进行归一化处理来衡量基建体系压力。最后结合各因子的重要性因素得到了公式3：
+\begin{equation}
+	E=k_{1}\frac{CO_{2p}N_{t}}{CO_{2max}}+k_{2}\frac{N_{t}}{C_{waste}}+k_{3}\frac{N_{t}}{C_{water}}
+\end{equation}
+具体的，我们认为朱诺市目前面临较为严重的冰川融化问题，需要控制碳排放量，同时，其废物处理系统的承载量相比供水系统更小，人数的增长对其的压力更大，故而我们认为k1>k2>k3。
+
+社会满意度方面，由于游客满意度在较长时间跨度的统计数据中均无明显变化，总体满意度停留在百分之99左右，我们认为游客满意度在税收等合理的情况下不会发生明显变化，故而主要考虑居民满意度。
+我们主要收集了朱诺市1998，2002，2006，2022，2023五年的社会满意度调查结果\cite{4}，摒除其无影响和不知道的无效评价，剩下的评价依据李斯特量表分成了五级，我们按照100分制对数据的评分进行了扩大处理。同时我们查找了这五年的游客人数\cite{5}来和社会满意度进行了数据拟合并得到了如下结果：
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{satisfaction.png}
 	\caption{satisfaction}\label{fig:satisfaction}
 \end{figure}
-其中，$a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$。最后，为了消除量纲带来的影响以来衡量社会满意度对目标函数的影响，我们给数据加上了一个合适的系数$k4$。得到的公式4如下：
+其中，$a_1 = -1.9753 \mathrm{e}{-11}$, $a_2 = 4.772\mathrm{e}{-5}$, $b = 39.2660$, $R^2 = 0.7423$。最后，为了消除量纲带来的影响，我们给满意度除以了满意度的最大值100分。得到的公式4如下：
 \begin{equation}
 	\begin{cases}
 		S_{residents}=a_{1}N_{t}^2+a_{2}N_{t} + b_{1} \\
-		S=k_{4}S_{residents}
+		S=S_{residents}/100
 	\end{cases}
 \end{equation}
 
-
-	\begin{equation}
-	\begin{cases}
-		\frac{\mathrm{d}C_{waste}}{\mathrm{d}t}=\alpha_1P_{waste} \\
-		\frac{\mathrm{d}C_{water}}{\mathrm{d}t}=\alpha_2P_{water} \\
-		\frac{\mathrm{d}C_{base}}{\mathrm{d}t}=\alpha_3P_e \\
-	\end{cases}
-	\end{equation}
-
-基建的额外投入方面，由于税率变化后的数据不够用于进行拟合以及考虑到税收对游客数量和消费意愿的抑制效应以及对消费的增长效应，结合实际已有的数据，认为在一定范围内波动时游客消费不受影响，简化为常数考虑。最后结合基建投入在政府实际分配中的比值，限定上限进行约束后得到公式6如下：
+额外投入方面，我们考虑到了政府对于额外税收的分配计划对系统的反馈作用，政府可以向供水系统、废物处理系统以及环境保护方面进行投入，如进行基建建设或者增强植树造林等，以提高基建的最大承载量和最大的碳排放量，进而获取更高的收益。我们认为政府可以调整投入在政府实际分配中的比值，以获取最大的收益。得到公式5如下：
 \begin{equation}
 	\begin{cases}
 		P_{waste} = k_5\tau_tR_e\\
@@ -159,14 +174,18 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 		k_5+k_6+k_7 \leqslant 0.4
 	\end{cases}
 \end{equation}
-\subsubsection{找到约束条件}
-在经济方面，很显然我们有$R_e$必须要大于等于0。为了限制税率的值，我们根据xxx得出税率应小于等于8\%。因此有公式7：
+为了简化模型，我们认为投入能够直接带来回报，并且支出以一定比例直接增加基建承载量或者最大碳排放量，以便于模型做出决策。
 \begin{equation}
-	Financial:
 	\begin{cases}
-		R_{e}\geqslant 0 \\
-		\tau_{t}\leqslant 8\% \\
+		C_{waste}+=\alpha_1P_{waste} \\
+		C_{water}+=\alpha_2P_{water} \\
+		CO_{2max}+=\alpha_3P_e \\
 	\end{cases}
+	\end{equation}
+\subsubsection{找到约束条件}
+在经济方面，为了限制税率的值以保证假设准确，我们设置了一个限制，认为总体税率应小于等于8\%。因此有公式7：
+\begin{equation}
+	Financial:\tau_{t}\leqslant 8\% \\
 \end{equation}
 
 游客人数方面，我们依据朱诺市的政策\cite{6}得出了每天的游客的人数限制。公式8如下:
@@ -175,7 +194,7 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 		0\leqslant N_{t}\leqslant N_{tmax}\\
 \end{equation}
 
-环境方面，以NASA的冰川融化数据\cite{7}为基础，通过度日因子法来进行量化计算，最后通过二氧化碳影响温度进而影响速度的因素来限定了二氧化碳的最大排放量。而在水资源最大承载量和废物处理最大承载量上面，考虑到旺季人数占全年的比例以及对于基建的压力，升大设置1.2倍日平均承载量作为上限来限制人数。公式9如下：
+环境方面，首先，我们限定了二氧化碳的最大排放量，而在水资源最大承载量和废物处理最大承载量上面，我们考虑到游客人数的季节性波动会导致旺季基建压力的上升，根据数据获得旺季每天最多游客人数占全年总游客人数的比例，考虑到基建能力一年内的的承载弹性，升大设置1.2倍日平均承载量作为上限来限制最大的日游客人数。公式9如下：
 \begin{equation}
 	Environmental:
 	\begin{cases}
@@ -226,8 +245,6 @@ The primary notations used in this paper are listed in Table \ref{tb:notation}.
 
 模型的解决方案和输出： 模型通过对多个影响因素进行多起点优化，最终得到最佳优化情况。
 \subsubsection{计算结果}
-$CO_{2max}$的计算过程，$C_{waste}$和$C_{water}$的计算过程。
-
 旅游总收入上，根据以往的数据，我们给旅客平均消费值赋值为x。经过我们的计算可以得到游客每年人数应为x人，$P_e$为x，结合以往的数据来看，这个数据是相对合理的。
 
 居民满意度上，将旅客人数带进拟合方程后可以得到居民满意度为x，符合我们的预期范围。
@@ -259,67 +276,71 @@ $CO_{2max}$的计算过程，$C_{waste}$和$C_{water}$的计算过程。
 
 通过图片我们不难看出，旅客人数为关键的变量，其在局部和全局中的敏感性分别达到了x和x，远大于其他的输入变量，而这也符合朱诺市作为一个旅游城市收入受旅客人数影响较大的客观事实。
 \section{Solution to Problem2}
-\subsection{建立分流模型}
+这里以朱诺市两个景点门登霍尔冰川和赏鲸雨林为例来具体展示分流模型是如何运作的。
+\subsection{生成不同景点的目标函数}
+为了进行不同景点之间分流，我们需要获取各个景点的目标函数以来衡量各景点人流量变化后的收益变化。因此，我们需要获得具体每个景点的相关数据。
 
-\subsection{Commetary on Model 2}
-The instance of long and wide tables are shown in Table \ref{tb:longtable}.
 
-% 长表格示例，更多用法请参考 longtable 宏包文档
-% 以下环境及对应参数可实现表格内的自动换行与表格的自动断页
-% 您也可以选择自行载入 tabularx 宏包，并通过 X 参数指定对应列自动换行
-\begin{longtable}{ p{4em} p{14em} p{14em} }
-\caption{Basic Information about Three Main Continents (scratched from Wikipedia)}
-\label{tb:longtable}\\
-\toprule
-Continent & Description & Information \\
-\midrule
-Africa & Africa Continent is surrounded by the Mediterranean Sea to the
-north, the Isthmus of Suez and the Red Sea to the northeast, the Indian
-Ocean to the southeast and the Atlantic Ocean to the west. &
-At about 30.3 million km$^2$ including adjacent islands, it covers 6\%
-of Earth's total surface area and 20\% of its land area. With 1.3
-billion people as of 2018, it accounts for about 16\% of the world's
-human population. \\
-\midrule
-Asia & Asia is Earth's largest and most populous continent which
-located primarily in the Eastern and Northern Hemispheres.
-It shares the continental landmass of Eurasia with the continent
-of Europe and the continental landmass of Afro-Eurasia with both
-Europe and Africa. &
-Asia covers an area of 44,579,000 square kilometres, about 30\%
-of Earth's total land area and 8.7\% of the Earth's total surface
-area. Its 4.5 billion people (as of June 2019) constitute roughly
-60\% of the world's population. \\
-\midrule
-Europe & Europe is a continent located entirely in the Northern
-Hemisphere and mostly in the Eastern Hemisphere. It comprises the
-westernmost part of Eurasia and is bordered by the Arctic Ocean to
-the north, the Atlantic Ocean to the west, the Mediterranean Sea to
-the south, and Asia to the east. &
-Europe covers about 10,180,000 km$^2$, or 2\% of the Earth's surface
-(6.8\% of land area), making it the second smallest
-continent. Europe had a total population of about 741 million (about
-11\% of the world population) as of 2018. \\
-\bottomrule
-\end{longtable}
 
-Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:left} is on the left, and Figure \ref{subfig:right} is on the right.
+% \subsection{Commetary on Model 2}
+% The instance of long and wide tables are shown in Table \ref{tb:longtable}.
+
+% % 长表格示例，更多用法请参考 longtable 宏包文档
+% % 以下环境及对应参数可实现表格内的自动换行与表格的自动断页
+% % 您也可以选择自行载入 tabularx 宏包，并通过 X 参数指定对应列自动换行
+% \begin{longtable}{ p{4em} p{14em} p{14em} }
+% \caption{Basic Information about Three Main Continents (scratched from Wikipedia)}
+% \label{tb:longtable}\\
+% \toprule
+% Continent & Description & Information \\
+% \midrule
+% Africa & Africa Continent is surrounded by the Mediterranean Sea to the
+% north, the Isthmus of Suez and the Red Sea to the northeast, the Indian
+% Ocean to the southeast and the Atlantic Ocean to the west. &
+% At about 30.3 million km$^2$ including adjacent islands, it covers 6\%
+% of Earth's total surface area and 20\% of its land area. With 1.3
+% billion people as of 2018, it accounts for about 16\% of the world's
+% human population. \\
+% \midrule
+% Asia & Asia is Earth's largest and most populous continent which
+% located primarily in the Eastern and Northern Hemispheres.
+% It shares the continental landmass of Eurasia with the continent
+% of Europe and the continental landmass of Afro-Eurasia with both
+% Europe and Africa. &
+% Asia covers an area of 44,579,000 square kilometres, about 30\%
+% of Earth's total land area and 8.7\% of the Earth's total surface
+% area. Its 4.5 billion people (as of June 2019) constitute roughly
+% 60\% of the world's population. \\
+% \midrule
+% Europe & Europe is a continent located entirely in the Northern
+% Hemisphere and mostly in the Eastern Hemisphere. It comprises the
+% westernmost part of Eurasia and is bordered by the Arctic Ocean to
+% the north, the Atlantic Ocean to the west, the Mediterranean Sea to
+% the south, and Asia to the east. &
+% Europe covers about 10,180,000 km$^2$, or 2\% of the Earth's surface
+% (6.8\% of land area), making it the second smallest
+% continent. Europe had a total population of about 741 million (about
+% 11\% of the world population) as of 2018. \\
+% \bottomrule
+% \end{longtable}
+
+% Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:left} is on the left, and Figure \ref{subfig:right} is on the right.
 
 % 子图（多图并列）示例，更多用法请参考 subfigure 宏包文档
 % 如果您只希望几张图并列，不需要额外的 caption，那么在 figure 环境中
 % 连续插入总宽度不超过 \textwidth 的多个 \includegraphics 命令即可
-\begin{figure}[htbp]
-\centering
-\begin{subfigure}[b]{.4\textwidth}
-\includegraphics[width=\textwidth]{water.png}
-\caption{Image on the left}\label{subfig:left}
-\end{subfigure}
-\begin{subfigure}[b]{.4\textwidth}
-\includegraphics[width=\textwidth]{water.png}
-\caption{Image on the right}\label{subfig:right}
-\end{subfigure}
-\caption{Two images}\label{fig:subfigures}
-\end{figure}
+% \begin{figure}[htbp]
+% \centering
+% \begin{subfigure}[b]{.4\textwidth}
+% \includegraphics[width=\textwidth]{water.png}
+% \caption{Image on the left}\label{subfig:left}
+% \end{subfigure}
+% \begin{subfigure}[b]{.4\textwidth}
+% \includegraphics[width=\textwidth]{water.png}
+% \caption{Image on the right}\label{subfig:right}
+% \end{subfigure}
+% \caption{Two images}\label{fig:subfigures}
+% \end{figure}
 
 \section{Solution to Problem3}
 为了展示模型是如何适应另一个受过度旅游影响的，我们经过数据的查找和收集决定选择位于中国四川省的九寨沟风景区来进行分析。
@@ -327,7 +348,11 @@ Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:l
 因为每个地方的基础设施压力，人均消费等都大不相同，我们需要经过数据调研修改相应的参数后才能使用当前的模型进行预测。
 
 通过对官网数据的收集\cite{8}，我们可以得出九寨沟县每年的收入和九寨沟风景区之间的关系。但是由于官方网站缺乏相应的满意度调查等信息，我们根据社会上的普遍评价对这些值进行了简单的估计，通过修改相应的限制条件，如水资源的人均消耗量，废物的人均产生量，水资源和废物处理的承载能力，游客人均消费水平，我们可以将模型适用于九寨沟的情况。根据我们模型跑出来的结果显示，xxx。这些数据和往年相比具有合理性，符合实际的基本预期。
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{JiuZhaiGou.jpg}
+	\caption{九寨沟旅游收入与游客人数之间的关系}\label{fig:JiuZhaiGou}
+\end{figure}
 
 % 以下为信件/备忘录部分，不需要可自行去掉
 % 如有需要可将整个 letter 环境移动到文章开头或中间
@@ -356,7 +381,7 @@ Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:l
 \textbf{加强市场营销推广：}继续在国内外主要旅游市场进行市场营销推广，提高朱诺市的知名度和美誉度。可以通过举办旅游推介会、参加旅游展会等方式，向更多的游客宣传朱诺市的旅游资源和旅游产品以来吸引更多游客和刺激游客消费，提高游客平均消费水平。
 
 \end{letter}
-
+\clearpage
 
 % 参考文献，此处以 MLA 引用格式为例
 
@@ -374,7 +399,7 @@ Figure \ref{fig:subfigures} gives an example of subfigures. Figure \ref{subfig:l
 % 如您的论文中不需要附录，请自行删除
 \begin{subappendices}  % 附录环境
 
-\section{Appendix A: Further on \LaTeX}
+\section{Appendix A: 关于AI工具的使用说明}
 To clarify the importance of using \LaTeX\ in MCM or ICM, several points need to be covered, which are \ldots
 
 To be more specific, \ldots
@@ -382,37 +407,6 @@ To be more specific, \ldots
 All in all, \ldots
 
 Anyway, nobody \textbf{really} needs such appendix \ldots
-
-\section{Appendix B: Program Codes}
-Here are the program codes we used in our research.
-
-% 代码环境示例三则
-% 如您的论文不需要展示代码，请删除
-% 更多用法，请参考 listings 宏包文档
-
-% Python 代码示例
-
-
-% MATLAB 代码示例
-\begin{lstlisting}[language=MATLAB, name={test.m}]
-% MATLAB code example
-for i = 1:10
-    disp("hello, world!");
-end
-\end{lstlisting}
-
-% C++ 代码示例
-\begin{lstlisting}[language=C++, name={test.cpp}]
-// C++ code example
-#include <iostream>
-using namespace std;
-
-int main() {
-    for (int i = 0; i < 10; i++)
-        cout << "hello, world" << endl;
-    return 0;
-}
-\end{lstlisting}
 
 \end{subappendices}  % 附录内容结束
 
